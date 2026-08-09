@@ -1,0 +1,1671 @@
+
+<!DOCTYPE html>
+<!-- quinary-tidied v1 -->
+<!-- 加工済みのファイルです。編集はV4の元ファイルで行い、もう一度この工程に通してください -->
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ▼一時的:画像を本番サイトから読み込む。ローカル画像を置いたら削除する -->
+  <base href="https://www.thequinary.com/">
+  <title>Quinary - 第五紀 - チチェン・イツァー</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap">
+
+  <style>
+    :root {
+      --kinari:#F4EFE4;
+      --washi:#FBF8F1;
+      --sumi:#2B2925;
+      --rikyu:#7A7462;
+      --usuzumi:#B9B2A0;
+      --accent:#27427a;
+      --accent-soft:#27427a1A;
+      --fd:'Shippori Mincho','Yu Mincho','游明朝',serif;
+      --fb:'Shippori Mincho','Yu Mincho','游明朝',serif;
+      --fu:'Zen Kaku Gothic New',sans-serif;
+      --pagew:900px
+    }
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box
+    }
+    html {
+      -webkit-text-size-adjust:100%
+    }
+    body {
+      background:var(--kinari);
+      color:var(--sumi);
+      font-family:var(--fb);
+      font-size:15.5px;
+      line-height:2.05;
+      letter-spacing:.04em
+    }
+    a {
+      color:var(--accent)
+    }
+    :focus-visible {
+      outline:2px solid var(--accent);
+      outline-offset:2px
+    }
+    img {
+      display:block;
+      max-width:100%
+    }
+    .site-head {
+      background:var(--washi);
+      border-bottom:0
+    }
+    .hd {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:14px 20px 10px;
+      display:flex;
+      align-items:baseline;
+      gap:14px;
+      flex-wrap:wrap
+    }
+    .brand {
+      font-family:var(--fd);
+      font-style:italic;
+      font-weight:500;
+      font-size:22px;
+      letter-spacing:.06em;
+      text-decoration:none;
+      color:var(--sumi)
+    }
+    .brand small {
+      font-style:normal;
+      font-family:var(--fu);
+      font-size:10px;
+      letter-spacing:.3em;
+      color:var(--rikyu);
+      margin-left:10px
+    }
+    .menu-btn {
+      margin-left:auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:32px;
+      flex:none;
+      background:none;
+      border:1px solid var(--usuzumi);
+      cursor:pointer
+    }
+    .menu-btn:hover {
+      border-color:var(--accent)
+    }
+    .menu-btn .bar {
+      display:inline-block;
+      width:16px;
+      height:11px;
+      position:relative
+    }
+    .menu-btn .bar::before,.menu-btn .bar::after,.menu-btn .bar i {
+      content:'';
+      position:absolute;
+      left:0;
+      right:0;
+      height:1.6px;
+      background:var(--sumi)
+    }
+    .menu-btn .bar::before {
+      top:0
+    }
+    .menu-btn .bar i {
+      top:4.7px
+    }
+    .menu-btn .bar::after {
+      top:9.4px
+    }
+    .crumbwrap {
+      background:none
+    }
+    .crumb {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:2px 20px 8px;
+      font-family:var(--fu);
+      font-size:10.5px;
+      letter-spacing:.1em;
+      color:var(--rikyu);
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center
+    }
+    .crumb a {
+      color:var(--rikyu);
+      text-decoration:none
+    }
+    .crumb a:hover {
+      color:var(--accent)
+    }
+    .crumb em {
+      font-style:normal;
+      color:var(--accent)
+    }
+    .wrap {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:34px 20px 70px
+    }
+    .hero {
+      margin-bottom:26px
+    }
+    .eyebrow {
+      font-family:var(--fu);
+      font-size:10px;
+      letter-spacing:.32em;
+      color:var(--accent);
+      margin-bottom:10px
+    }
+    h1 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:32px;
+      letter-spacing:.1em;
+      line-height:1.6;
+      margin-bottom:14px
+    }
+    .hero p {
+      font-size:14.5px
+    }
+    .map {
+      margin:26px 0 34px
+    }
+    .mapfrm {
+      position:relative;
+      width:100%;
+      aspect-ratio:5/3;
+      border:1px solid var(--usuzumi);
+      background:var(--washi)
+    }
+    @media(max-width:640px) {
+      .mapfrm {
+        aspect-ratio:1/1
+      }
+    }
+    .mapfrm iframe {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0
+    }
+    .maplink {
+      margin-top:8px;
+      font-family:var(--fu);
+      font-size:11.5px;
+      letter-spacing:.08em
+    }
+    .maprow {
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap
+    }
+    .spotlink {
+      margin-top:8px;
+      margin-left:auto;
+      font-family:var(--fu);
+      font-size:11.5px;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      color:var(--accent);
+      text-decoration:none;
+      border-bottom:1px solid transparent
+    }
+    .spotlink:hover {
+      border-bottom-color:var(--accent)
+    }
+    .spotlink[hidden] {
+      display:none
+    }
+    .spots {
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:26px
+    }
+    @media(min-width:700px) {
+      .spots {
+        padding-left:26px
+      }
+      .spots::before {
+        content:'';
+        position:absolute;
+        left:6px;
+        top:14px;
+        bottom:14px;
+        width:1px;
+        background:var(--usuzumi)
+      }
+      .spot::before {
+        content:'';
+        position:absolute;
+        left:-23px;
+        top:30px;
+        width:7px;
+        height:7px;
+        background:var(--accent);
+        transform:rotate(45deg)
+      }
+    }
+    .spot {
+      position:relative;
+      background:var(--washi);
+      border:1px solid var(--usuzumi);
+      padding:24px 26px 26px
+    }
+    .spot h2 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:20px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:8px
+    }
+    .spot p {
+      margin-bottom:6px
+    }
+    .rank {
+      display:inline-block;
+      vertical-align:2px;
+      margin-left:12px;
+      padding:2px 10px;
+      font-family:var(--fu);
+      font-size:11px;
+      letter-spacing:.22em;
+      color:var(--accent);
+      background:var(--accent-soft);
+      border:1px solid var(--accent);
+      white-space:nowrap
+    }
+    .rank.s {
+      font-size:10px;
+      padding:1px 8px;
+      margin-left:10px;
+      vertical-align:1px
+    }
+    .sub {
+      border-top:1px dashed var(--usuzumi);
+      margin-top:20px;
+      padding-top:18px
+    }
+    .sub h3 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:16.5px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:6px
+    }
+    .sub h4 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:14px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:6px
+    }
+    .ph {
+      display:grid;
+      gap:10px;
+      margin:14px 0 4px
+    }
+    .ph.one {
+      grid-template-columns:1fr!important
+    }
+    .ph.fill2>.pht:last-child:nth-child(odd) {
+      grid-column:1/-1
+    }
+    .tblwrap {
+      overflow-x:auto;
+      margin:14px 0 4px
+    }
+    .tblwrap table {
+      border-collapse:collapse;
+      font-size:.95em;
+      line-height:1.8
+    }
+    .tblwrap td,.tblwrap th {
+      border:1px solid var(--usuzumi);
+      padding:6px 12px;
+      background:var(--washi)
+    }
+    .rawwrap {
+      margin:10px 0
+    }
+    .pht {
+      display:block;
+      border:1px solid var(--usuzumi);
+      background:var(--kinari)
+    }
+    .pht img {
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover
+    }
+    .pht:hover {
+      border-color:var(--accent)
+    }
+    @media(max-width:640px) {
+      .ph:not(.one) {
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:8px
+      }
+      .ph:not(.one)>.pht:last-child:nth-child(odd) {
+        grid-column:1/-1
+      }
+    }
+    .spot {
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .5s ease,transform .5s ease
+    }
+    .spot.vis {
+      opacity:1;
+      transform:none
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .spot {
+        opacity:1;
+        transform:none;
+        transition:none
+      }
+    }
+    footer {
+      border-top:1px solid var(--usuzumi);
+      background:var(--washi)
+    }
+    footer p {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:16px 20px;
+      font-family:var(--fu);
+      font-size:10.5px;
+      letter-spacing:.14em;
+      color:var(--rikyu);
+      text-align:center
+    }
+    .hero-photo {
+      position:relative;
+      display:flex;
+      min-height:340px;
+      margin-bottom:22px;
+      border:1px solid var(--usuzumi);
+      overflow:hidden
+    }
+    .hero-bg {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover
+    }
+    .hero-shade {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(20,19,17,.12),rgba(20,19,17,.55))
+    }
+    .hero-inner {
+      position:relative;
+      width:100%;
+      padding:26px 28px;
+      color:#FBF8F1
+    }
+    .hero-photo h1 {
+      color:#FBF8F1;
+      text-shadow:0 1px 3px rgba(20,19,17,.45);
+      margin-bottom:0
+    }
+    .hero-photo .eyebrow {
+      color:rgba(251,248,241,.85)
+    }
+    .pos-bl {
+      align-items:flex-end
+    }
+    .pos-tl {
+      align-items:flex-start
+    }
+    .pos-c {
+      align-items:center
+    }
+    .pos-c .hero-inner {
+      text-align:center
+    }
+    .lede {
+      margin-bottom:26px
+    }
+    .lede p {
+      font-size:14.5px
+    }
+    @media(max-width:640px) {
+      .hero-photo {
+        min-height:230px;
+        margin:-34px -20px 22px;
+        border-left:0;
+        border-right:0;
+        border-top:0
+      }
+      .hero-inner {
+        padding:18px 20px
+      }
+    }
+    .mapfrm.sec {
+      margin:14px 0 4px
+    }
+    .totop {
+      position:fixed;
+      right:14px;
+      bottom:14px;
+      width:44px;
+      height:44px;
+      z-index:35;
+      border:1px solid var(--usuzumi);
+      background:var(--washi);
+      color:var(--sumi);
+      font-family:var(--fu);
+      font-size:16px;
+      cursor:pointer;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s
+    }
+    .totop.show {
+      opacity:.92;
+      pointer-events:auto
+    }
+    .site-head {
+      position:sticky;
+      top:0;
+      z-index:31
+    }
+    .brand small {
+      transition:opacity .25s
+    }
+    body.scrolled .brand small {
+      opacity:0
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .totop,.brand small {
+        transition:none
+      }
+    }
+    .tree {
+      list-style:none;
+      font-family:var(--fu);
+      font-size:13px;
+      letter-spacing:.05em
+    }
+    .tree ul {
+      list-style:none;
+      display:none;
+      padding-left:22px;
+      overflow:hidden
+    }
+    .tree li.br.open>ul {
+      display:block
+    }
+    .tree ul.anim {
+      transition:height .24s cubic-bezier(.4,0,.2,1)
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .tree ul.anim {
+        transition:none
+      }
+    }
+    .tree .row {
+      display:flex;
+      align-items:center;
+      gap:4px;
+      padding:3.5px 0
+    }
+    .tree>li {
+      margin:3px 0
+    }
+    .tree>li>.row {
+      background:rgba(43,41,37,.035);
+      padding:8px 10px
+    }
+    .tree>li.open>.row {
+      background:var(--accent-soft)
+    }
+    .tree ul .row {
+      padding:5.5px 0
+    }
+    .tree .lnk {
+      flex:1;
+      color:var(--sumi);
+      text-decoration:none;
+      line-height:1.55
+    }
+    .tree .lnk:hover {
+      color:var(--accent)
+    }
+    .tree .lnk.cur {
+      color:#fff;
+      font-weight:700;
+      background:var(--accent);
+      padding:3px 10px
+    }
+    .tree .tw {
+      width:24px;
+      height:24px;
+      flex:none;
+      background:none;
+      border:0;
+      cursor:pointer;
+      position:relative
+    }
+    .tree .tw::before {
+      content:'';
+      position:absolute;
+      left:9px;
+      top:7px;
+      border:5px solid transparent;
+      border-left-color:var(--rikyu);
+      transition:transform .15s
+    }
+    .tree li.open>.row .tw::before {
+      transform:rotate(90deg)
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .tree .tw::before {
+        transition:none
+      }
+    }
+    .cdot {
+      width:4px;
+      height:18px;
+      display:inline-block;
+      margin-right:10px;
+      flex:none
+    }
+    @media(max-width:640px) {
+      .drawer {
+        width:min(88vw,320px);
+        scrollbar-width:none
+      }
+      .drawer::-webkit-scrollbar {
+        display:none
+      }
+      .tree {
+        font-size:15px
+      }
+      .tree>li>.row {
+        padding:10px 10px
+      }
+      .tree ul .row {
+        padding:7px 0
+      }
+      .tree .tw {
+        width:30px;
+        height:30px
+      }
+      .tree .tw::before {
+        left:12px;
+        top:10px
+      }
+    }
+    .scrim {
+      position:fixed;
+      inset:0;
+      background:rgba(43,41,37,.35);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s;
+      z-index:40
+    }
+    .drawer {
+      position:fixed;
+      top:0;
+      bottom:0;
+      left:0;
+      width:min(82vw,300px);
+      z-index:41;
+      background:var(--washi);
+      border-right:1px solid var(--usuzumi);
+      transform:translateX(-102%);
+      transition:transform .22s;
+      overflow-y:auto;
+      padding:18px 16px 30px
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .drawer,.scrim {
+        transition:none
+      }
+    }
+    body.nav-open .drawer {
+      transform:none
+    }
+    body.nav-open .scrim {
+      opacity:1;
+      pointer-events:auto
+    }
+    .drawer .dh {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px
+    }
+    .drawer .dh b {
+      font-family:var(--fu);
+      font-size:11px;
+      letter-spacing:.28em;
+      color:var(--rikyu);
+      font-weight:500
+    }
+    .dclose {
+      background:none;
+      border:1px solid var(--usuzumi);
+      width:30px;
+      height:30px;
+      cursor:pointer;
+      font-size:14px;
+      color:var(--sumi);
+      line-height:1
+    }
+    .lb {
+      position:fixed;
+      inset:0;
+      background:rgba(20,19,17,.88);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      cursor:zoom-out;
+      padding:20px
+    }
+    .lb.show {
+      display:flex
+    }
+    .lb img {
+      max-width:94vw;
+      max-height:88vh;
+      border:1px solid var(--usuzumi);
+      background:#000
+    }
+  </style>
+  <noscript>
+    <style>.spot{opacity:1;transform:none}</style>
+  </noscript>
+</head>
+
+<body>
+
+  <!-- 頭部:サイト名・メニューボタン・現在地 -->
+  <header class="site-head">
+    <div class="hd">
+      <a class="brand" href="index.html">Quinary<small>第五紀 — SINCE 2012</small></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="メニューをひらく">
+        <span class="bar"><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 現在地(帯なし・文字だけ) -->
+  <div class="crumbwrap">
+    <nav class="crumb" aria-label="現在地">
+      <a href="index.html">トップ</a>
+      <span>〉</span>
+      <a href="world_top.html">世界へ</a>
+      <span>〉</span>
+      <a href="centralamerica_top.html">中米</a>
+      <span>〉</span>
+      <a href="maya.html">マヤの遺跡</a>
+      <span>〉</span>
+      <em>チチェン・イツァー</em>
+    </nav>
+  </div>
+
+  <!-- 本文:V4で作った内容をそのまま移しています(文章の変更はありません) -->
+  <main class="wrap">
+
+    <div class="hero">
+      <h1>チチェン・イツァー</h1>
+    </div>
+
+    <!-- 地図:別途アップロードした地図ファイルを読み込みます -->
+    <div class="map">
+      <div class="mapfrm">
+        <iframe title="地図" srcdoc="<!DOCTYPE html>
+<!-- quinary-map v4 整える工程が生成した地図 -->
+<!-- PC: 左に一覧+右に地図 / スマホ: 地図が全面+下から出る一覧(タップ切替) -->
+<html lang=&quot;ja&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot;>
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+  <title>地図</title>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+  <style>
+    :root { --accent: #27427A; --deep: #9a2213; --shu: #d62f1b; --soft: #27427A1F; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; position: relative; overflow: hidden;
+      background: #F4EFE4; color: #2B2925;
+      font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; letter-spacing: .06em; }
+    /* ===== PC: 左に一覧、右に地図 ===== */
+    .mapunit { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 225px 1fr;
+      background: #FBF8F1; }
+    #list { border-right: 1px solid #B9B2A0; display: flex; flex-direction: column;
+      min-height: 0; background: #FBF8F1; }
+    .listhead { flex: none; display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; padding: 11px 14px; border-bottom: 1px solid #B9B2A0;
+      font-size: 10.5px; letter-spacing: .16em; color: #7A7462; }
+    .listhead button { appearance: none; cursor: pointer; border: 1px solid #B9B2A0;
+      background: none; color: #7A7462; font: inherit; letter-spacing: .12em;
+      padding: 4px 9px; transition: color .2s, border-color .2s, background .2s; }
+    .listhead button:hover { color: var(--accent); border-color: var(--accent);
+      background: var(--soft); }
+    .listbody { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-bottom: 14px;
+      scrollbar-width: thin; scrollbar-color: #CFC7B4 transparent; }
+    .listbody::-webkit-scrollbar { width: 8px; }
+    .listbody::-webkit-scrollbar-thumb { background: #CFC7B4; }
+    .listbody::-webkit-scrollbar-track { background: transparent; }
+    .cityhead { font-family: 'Shippori Mincho', serif; font-size: 12.5px; letter-spacing: .16em;
+      color: #7A7462; padding: 14px 16px 5px; position: sticky; top: 0; z-index: 1;
+      background: linear-gradient(#FBF8F1 78%, rgba(251,248,241,0)); }
+    #list button, .sheetbody button { appearance: none; border: 0; background: none; cursor: pointer;
+      width: 100%; display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+      text-align: left; font: inherit; color: inherit; border-left: 2px solid transparent; }
+    #list button { padding: 9px 14px 9px 14px; line-height: 1.6;
+      border-bottom: 1px solid rgba(185,178,160,.3); transition: background .18s; }
+    #list button:hover { background: var(--soft); }
+    #list button[aria-current=&quot;true&quot;] .no { color: var(--accent); }
+    #list button[aria-current=&quot;true&quot;] .nm { font-weight: 500; }
+    #list button[aria-current=&quot;true&quot;], .sheetbody button[aria-current=&quot;true&quot;] {
+      background: var(--soft); border-left-color: var(--accent); }
+    /* 星: 塗り = 藍 / 空き = 薄い生成り。5点満点が一目で分かる */
+    .st { color: var(--accent); font-size: 11px; letter-spacing: .14em; white-space: nowrap; }
+    .st i { color: #D5CDB8; font-style: normal; }
+    .nm { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+    .no { font-style: normal; font-size: 10.5px; color: #7A7462; min-width: 17px;
+      font-variant-numeric: tabular-nums; }
+    #gmap { min-height: 0; }
+    /* ===== PC: 地図の下の旅程バー ===== */
+    .storybar { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center;
+      background: #FBF8F1; border-top: 1px solid #B9B2A0; padding: 7px 10px; }
+    .storybar button { appearance: none; cursor: pointer; border: 1px solid #B9B2A0;
+      background: none; color: inherit; padding: 6px 13px; font: inherit; font-size: 11.5px;
+      letter-spacing: .12em; }
+    .storybar button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent);
+      background: var(--soft); }
+    .storybar button:disabled { opacity: .35; cursor: default; }
+    .now { text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .now .cnt { color: var(--accent); margin-right: 9px; font-variant-numeric: tabular-nums; }
+    .now .ph { color: #7A7462; font-size: 12px; }
+    /* ===== スマホ: 下から出る一覧(タップで開閉・引っぱり操作なし) ===== */
+    .sheet { display: none; position: absolute; left: 0; right: 0; bottom: 0; z-index: 5;
+      height: 62%; background: #FBF8F1; border-top: 1px solid #B9B2A0;
+      box-shadow: 0 -4px 18px rgba(43,41,37,.18);
+      transform: translateY(calc(100% - 54px));
+      transition: transform .3s ease; }
+    .sheet.open { transform: translateY(0); }
+    .scrim { display: none; position: absolute; inset: 0; z-index: 4;
+      background: rgba(43,41,37,.28); opacity: 0; transition: opacity .3s; }
+    .scrim.on { opacity: 1; }
+    .sheethead { display: grid; grid-template-columns: 76px 1fr 76px; height: 58px;
+      border-bottom: 1px solid #B9B2A0; }
+    .sheethead button { appearance: none; border: 0; background: none; cursor: pointer;
+      font: inherit; color: inherit; }
+    .sheethead .step { font-size: 13px; letter-spacing: .1em; color: var(--accent); }
+    .sheethead .step:disabled { opacity: .28; }
+    .sheethead .step.p { border-right: 1px solid rgba(185,178,160,.6); }
+    .sheethead .step.n { border-left: 1px solid rgba(185,178,160,.6); }
+    .sheettoggle { display: flex; align-items: center; justify-content: center; gap: 9px;
+      min-width: 0; padding: 0 6px; }
+    .sheettoggle .tx { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      font-size: 14.5px; font-weight: 500; letter-spacing: .06em; }
+    .sheettoggle .cnt { color: #7A7462; font-size: 11px; margin-right: 8px;
+      font-variant-numeric: tabular-nums; font-weight: 400; }
+    .sheettoggle .chev { flex: none; color: var(--accent); font-size: 9px;
+      transition: transform .3s; }
+    .sheet.open .chev { transform: rotate(180deg); }
+    .sheet.open .sheettoggle .cnt { display: none; }
+    .sheetbody { height: calc(100% - 54px); overflow-y: auto;
+      -webkit-overflow-scrolling: touch; padding: 4px 0 14px; }
+    .sheetbody .cityhead { position: sticky; top: 0; background: #FBF8F1; z-index: 1;
+      padding: 12px 18px 5px; }
+    .sheetbody button { padding: 13px 18px 13px 26px; font-size: 14px;
+      border-bottom: 1px solid rgba(185,178,160,.35); }
+    /* ===== 幅ごとの出し分け ===== */
+    @media (max-width: 760px) {
+      .mapunit { grid-template-columns: 1fr; }
+      #list { display: none; }        /* 左一覧はPCだけ */
+      .storybar { display: none; }    /* 旅程バーは下の一覧に統合 */
+      .sheet { display: block; }
+      .scrim:not([hidden]) { display: block; }   /* 一覧の外を押すと閉じる */
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sheet, .sheettoggle .chev, .scrim { transition: none; }
+    }
+    /* ===== 吹き出し(選んだ場所の詳細カード) 参考画像のデザイン =====
+       Google側の枠は透明にして、カードの見た目は .iw だけで作る(帯のズレ防止)
+       角丸のクリーム地 / 左端に藍の帯 / 右上に× / 名前と星は中央揃え / 下段に ‹ ・GoogleMapへ・› */
+    .gm-style .gm-style-iw-c { border-radius: 0 !important; background: transparent !important;
+      border: 0 !important; box-shadow: none !important; padding: 0 !important;
+      max-width: 260px !important; overflow: visible !important; }
+    .gm-style .gm-style-iw-d { overflow: visible !important; max-height: none !important;
+      padding: 0 !important; background: transparent !important; }
+    .gm-style .gm-style-iw-tc { display: none !important; }   /* 下の三角は出さない */
+    .gm-style .gm-style-iw-c button.gm-ui-hover-effect { display: none !important; }
+    /* 既定は控えめな大きさ。広い枠のときだけ大きくする(下の min-width 指定) */
+    .iw { position: relative; box-sizing: border-box; min-width: 172px;
+      background: #F8F4E6; border-radius: 11px; overflow: hidden;
+      box-shadow: 0 4px 14px rgba(43,41,37,.22);
+      padding: 11px 12px 4px 18px; font-family: 'Zen Kaku Gothic New', sans-serif; }
+    /* 左の帯は擬似要素。角丸で切り抜くので、帯と地の境目は直線になる */
+    .iw::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 6px; background: var(--accent); }
+    .iw .x { position: absolute; top: 2px; right: 2px; appearance: none; border: 0;
+      background: none; cursor: pointer; width: 26px; height: 26px; line-height: 1;
+      font-size: 14px; color: #4A4741; padding: 0; }
+    .iw .x:hover { color: var(--deep); }
+    .iw .c { display: block; text-align: center; font-size: 10px; letter-spacing: .2em;
+      color: #7A7462; margin-bottom: 2px; }
+    .iw .n { display: block; text-align: center; font-weight: 700; font-size: 13.5px;
+      letter-spacing: .06em; line-height: 1.45; color: #3D3B36; padding: 0 22px; }
+    .iw .r { display: block; text-align: center; margin-top: 3px; color: #3D3B36;
+      font-size: 12px; letter-spacing: .14em; }
+    .iw .iwnav { display: flex; align-items: center; margin-top: 8px;
+      border-top: 1px solid rgba(122,116,98,.4); padding: 5px 0 0; }
+    .iw .iwnav button { appearance: none; cursor: pointer; border: 0; background: none;
+      color: #3D3B36; font: inherit; font-size: 15px; line-height: 1;
+      width: 36px; height: 26px; flex: none; }
+    .iw .iwnav button:hover:not(:disabled) { color: var(--accent); }
+    .iw .iwnav button:disabled { opacity: .28; cursor: default; }
+    .iw .iwnav a { flex: 1 1 auto; text-align: center; color: #45A5C9;
+      text-decoration: none; font-size: 13px; letter-spacing: .06em; white-space: nowrap; }
+    .iw .iwnav a:hover { text-decoration: underline; }
+    /* 枠が広いときだけ、ゆったりした大きさに戻す */
+    @media (min-width: 900px) and (min-height: 560px) {
+      .iw { min-width: 230px; border-radius: 14px; padding: 16px 16px 8px 25px; }
+      .iw::before { width: 9px; }
+      .iw .x { top: 5px; right: 5px; width: 30px; height: 30px; font-size: 16px; }
+      .iw .n { font-size: 17px; letter-spacing: .1em; padding: 0 26px; }
+      .iw .r { font-size: 15px; margin-top: 5px; letter-spacing: .18em; }
+      .iw .iwnav { margin-top: 12px; padding-top: 7px; }
+      .iw .iwnav button { font-size: 17px; width: 44px; height: 30px; }
+      .iw .iwnav a { font-size: 13px; }
+    }
+    /* ===== 小さな枠(記事の中のスマホ表示): 全体を引き締める ===== */
+    @media (max-width: 480px) {
+      .sheethead { grid-template-columns: 58px 1fr 58px; height: 46px; }
+      .sheethead .step { font-size: 11.5px; }
+      .sheettoggle .tx { font-size: 13px; }
+      .sheettoggle .cnt { font-size: 10px; margin-right: 6px; }
+      .sheetbody button { padding: 11px 16px 11px 22px; font-size: 13px; }
+      .sheet { transform: translateY(calc(100% - 46px)); height: 70%; }
+      .sheet.open { transform: translateY(0); }
+    }
+    /* ===== スマホ: 吹き出しの代わりに、地図の下端に置く固定カード ===== */
+    .mcard { display: none; }
+    @media (max-width: 760px) {
+      .mcard { display: block; position: absolute; left: 10px; right: 10px;
+        bottom: 68px; z-index: 6; }
+      .mcard[hidden] { display: none; }
+      .mcard .iw { min-width: 0; width: 100%; padding: 14px 14px 6px 21px;
+        border-radius: 12px; }
+      .mcard .iw::before { width: 7px; }
+      .mcard .iw .n { font-size: 16px; padding: 0 26px; letter-spacing: .06em; }
+      .mcard .iw .r { font-size: 15px; margin-top: 4px; }
+      .mcard .iw .iwnav { display: none; }   /* 下端バーに前へ/次へがあるので出さない */
+      .mcard .iw { padding-bottom: 12px; }
+    }
+    @media (max-width: 480px) {
+      .mcard { left: 8px; right: 8px; bottom: 54px; }
+      .mcard .iw { padding: 10px 10px 3px 15px; border-radius: 10px; }
+      .mcard .iw::before { width: 5px; }
+      .mcard .iw .n { font-size: 13.5px; padding: 0 24px; }
+      .mcard .iw .r { font-size: 12px; margin-top: 2px; letter-spacing: .14em; }
+      .mcard .iw .c { font-size: 9px; margin-bottom: 1px; }
+      .mcard .iw .x { top: 2px; right: 2px; width: 26px; height: 26px; font-size: 14px; }
+      .mcard .iw { padding-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class=&quot;mapunit&quot;>
+    <nav id=&quot;list&quot; aria-label=&quot;場所の一覧&quot;>
+      <div class=&quot;listhead&quot;>
+        <span>場所 16件</span>
+        <button type=&quot;button&quot; id=&quot;fitAll&quot;>全体を見る</button>
+      </div>
+      <div class=&quot;listbody&quot;>
+        <button type=&quot;button&quot; data-i=&quot;0&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>1</i>ククルカンの神殿</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;1&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>2</i>ジャガーの神殿</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;2&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>3</i>球戯場</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;3&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>4</i>ツォンパントリ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;4&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>5</i>鷲とジャガーの基壇</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;5&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>6</i>金星の基壇</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;6&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>7</i>聖なるセノーテ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;7&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>8</i>戦士の神殿</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;8&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>9</i>大きなテーブルの神殿</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;9&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>10</i>北の列柱</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;10&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>11</i>南西の列柱</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;11&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>12</i>高僧の墳墓</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;12&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>13</i>赤い家</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;13&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>14</i>カラコル</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;14&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>15</i>尼僧院</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;15&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>16</i>教会</span><span class=&quot;st&quot;></span></button>
+      </div>
+    </nav>
+    <div id=&quot;gmap&quot; role=&quot;application&quot; aria-label=&quot;訪れた場所の地図&quot;></div>
+  </div>
+  <div class=&quot;storybar&quot;>
+    <button type=&quot;button&quot; id=&quot;prev&quot; aria-label=&quot;前の場所へ&quot;>← 前へ</button>
+    <p class=&quot;now&quot; id=&quot;now&quot;><span class=&quot;ph&quot;>場所を選ぶと、ここに旅程が出ます</span></p>
+    <button type=&quot;button&quot; id=&quot;next&quot; aria-label=&quot;次の場所へ&quot;>次へ →</button>
+  </div>
+  <div class=&quot;mcard&quot; id=&quot;mcard&quot; hidden></div>
+  <div class=&quot;scrim&quot; id=&quot;scrim&quot; hidden></div>
+  <div class=&quot;sheet&quot; id=&quot;sheet&quot;>
+    <div class=&quot;sheethead&quot;>
+      <button type=&quot;button&quot; class=&quot;step p&quot; id=&quot;sPrev&quot; aria-label=&quot;前の場所へ&quot;>前へ</button>
+      <button type=&quot;button&quot; class=&quot;sheettoggle&quot; id=&quot;sToggle&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;sheetBody&quot;>
+        <span class=&quot;tx&quot; id=&quot;sTx&quot;>ククルカンの神殿</span>
+        <span class=&quot;chev&quot;>▼</span>
+      </button>
+      <button type=&quot;button&quot; class=&quot;step n&quot; id=&quot;sNext&quot; aria-label=&quot;次の場所へ&quot;>次へ</button>
+    </div>
+    <div class=&quot;sheetbody&quot; id=&quot;sheetBody&quot;>
+      <button type=&quot;button&quot; data-i=&quot;0&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>1</i>ククルカンの神殿</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;1&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>2</i>ジャガーの神殿</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;2&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>3</i>球戯場</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;3&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>4</i>ツォンパントリ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;4&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>5</i>鷲とジャガーの基壇</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;5&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>6</i>金星の基壇</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;6&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>7</i>聖なるセノーテ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;7&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>8</i>戦士の神殿</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;8&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>9</i>大きなテーブルの神殿</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;9&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>10</i>北の列柱</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;10&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>11</i>南西の列柱</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;11&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>12</i>高僧の墳墓</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;12&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>13</i>赤い家</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;13&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>14</i>カラコル</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;14&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>15</i>尼僧院</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;15&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>16</i>教会</span><span class=&quot;st&quot;></span></button>
+    </div>
+  </div>
+  <script>
+    var SPOTS = [{&quot;n&quot;:&quot;ククルカンの神殿&quot;,&quot;a&quot;:20.68292,&quot;o&quot;:-88.568688,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:0},{&quot;n&quot;:&quot;ジャガーの神殿&quot;,&quot;a&quot;:20.684214,&quot;o&quot;:-88.569914,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:1},{&quot;n&quot;:&quot;球戯場&quot;,&quot;a&quot;:20.684518,&quot;o&quot;:-88.570133,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:2},{&quot;n&quot;:&quot;ツォンパントリ&quot;,&quot;a&quot;:20.684357,&quot;o&quot;:-88.569402,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:3},{&quot;n&quot;:&quot;鷲とジャガーの基壇&quot;,&quot;a&quot;:20.683989,&quot;o&quot;:-88.569311,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:4},{&quot;n&quot;:&quot;金星の基壇&quot;,&quot;a&quot;:20.683989,&quot;o&quot;:-88.56834,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:5},{&quot;n&quot;:&quot;聖なるセノーテ&quot;,&quot;a&quot;:20.687693,&quot;o&quot;:-88.56773,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:6},{&quot;n&quot;:&quot;戦士の神殿&quot;,&quot;a&quot;:20.683114,&quot;o&quot;:-88.567162,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:7},{&quot;n&quot;:&quot;大きなテーブルの神殿&quot;,&quot;a&quot;:20.683512,&quot;o&quot;:-88.567181,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:8},{&quot;n&quot;:&quot;北の列柱&quot;,&quot;a&quot;:20.68274,&quot;o&quot;:-88.566935,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:9},{&quot;n&quot;:&quot;南西の列柱&quot;,&quot;a&quot;:20.68219,&quot;o&quot;:-88.567834,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:10},{&quot;n&quot;:&quot;高僧の墳墓&quot;,&quot;a&quot;:20.681499,&quot;o&quot;:-88.570833,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:11},{&quot;n&quot;:&quot;赤い家&quot;,&quot;a&quot;:20.680139,&quot;o&quot;:-88.571439,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:12},{&quot;n&quot;:&quot;カラコル&quot;,&quot;a&quot;:20.679286,&quot;o&quot;:-88.570737,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:13},{&quot;n&quot;:&quot;尼僧院&quot;,&quot;a&quot;:20.678198,&quot;o&quot;:-88.571445,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:14},{&quot;n&quot;:&quot;教会&quot;,&quot;a&quot;:20.67817,&quot;o&quot;:-88.571066,&quot;r&quot;:0,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:15}];
+    var map, info, marks = [], cur = -1;
+    /* ピン上のtitle(ホバー文言)用: 素の★だけ */
+    function stars(r) { var s = ''; for (var i = 0; i < r; i++) s += '\u2605'; return s; }
+    /* 一覧・カード用: 5点満点で塗り★+空き★(空きは<i>で薄く) */
+    function stars5(r) {
+      var s = '';
+      for (var i = 0; i < 5; i++) s += (i < r) ? '\u2605' : '<i>\u2605</i>';
+      return s;
+    }
+    /* ===== ピン(v5デザイン。試作画像で確認済み) =====
+       雫型 + 立体感のあるグラデ + 生成りの縁取り + ぼかし影。先端が座標を指す
+       普段    : 明るい朱、小さめ
+       選択中  : 深い朱でひと回り大きく、先端に「ここ」を示す波紋が2重に広がる */
+    /* 小さな枠ではピンも小さく(0.68倍) */
+    function pinScale() { return window.matchMedia('(max-width: 480px)').matches ? 0.68 : 1; }
+    function pin(i, active) {
+      var gt = active ? '#D93A22' : '#E8503A';   /* グラデ上端 */
+      var gb = active ? '#9A2213' : '#C22B15';   /* グラデ下端 */
+      var W = Math.round((active ? 46 : 32) * pinScale());
+      var H = Math.round(W * 46 / 34);
+      var id = active ? 'a' : 'n';               /* 2種のアイコンでdefsのidが衝突しないように */
+      var svg = '<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;' + W + '&quot; height=&quot;' + H + '&quot; viewBox=&quot;0 0 34 46&quot;>'
+        + '<defs>'
+        + '<linearGradient id=&quot;b' + id + '&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;0&quot; y2=&quot;1&quot;>'
+          + '<stop offset=&quot;0&quot; stop-color=&quot;' + gt + '&quot;/><stop offset=&quot;1&quot; stop-color=&quot;' + gb + '&quot;/>'
+        + '</linearGradient>'
+        + '<filter id=&quot;s' + id + '&quot; x=&quot;-40%&quot; y=&quot;-40%&quot; width=&quot;180%&quot; height=&quot;180%&quot;>'
+          + '<feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.1&quot;/></filter>'
+        + '</defs>'
+        + (active
+            ? '<circle cx=&quot;17&quot; cy=&quot;42.6&quot; r=&quot;8.4&quot; fill=&quot;none&quot; stroke=&quot;#C22B15&quot; stroke-width=&quot;1.1&quot; opacity=&quot;.35&quot;/>'
+              + '<circle cx=&quot;17&quot; cy=&quot;42.6&quot; r=&quot;4.6&quot; fill=&quot;none&quot; stroke=&quot;#C22B15&quot; stroke-width=&quot;1.2&quot; opacity=&quot;.6&quot;/>'
+            : '')
+        + '<ellipse cx=&quot;17&quot; cy=&quot;42.6&quot; rx=&quot;5.6&quot; ry=&quot;1.9&quot; fill=&quot;rgba(43,41,37,.35)&quot; filter=&quot;url(#s' + id + ')&quot;/>'
+        + '<path d=&quot;M17 41.5 C17 41.5 29.4 26.9 29.4 16.9 A12.4 12.4 0 1 0 4.6 16.9'
+          + ' C4.6 26.9 17 41.5 17 41.5 Z&quot; fill=&quot;url(#b' + id + ')&quot; stroke=&quot;#FBF8F1&quot;'
+          + ' stroke-width=&quot;1.8&quot; stroke-linejoin=&quot;round&quot;/>'
+        + '<ellipse cx=&quot;12.1&quot; cy=&quot;10.2&quot; rx=&quot;4.0&quot; ry=&quot;2.6&quot; fill=&quot;rgba(255,255,255,.28)&quot;'
+          + ' transform=&quot;rotate(-24 12.1 10.2)&quot;/>'
+        + '<circle cx=&quot;17&quot; cy=&quot;16.9&quot; r=&quot;4.7&quot; fill=&quot;#FBF8F1&quot;/>'
+        + '</svg>';
+      return {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+        scaledSize: new google.maps.Size(W, H),
+        anchor: new google.maps.Point(W / 2, Math.round(H * 41.5 / 46))   /* 先端が座標 */
+      };
+    }
+    /* ===== 地図はGoogle標準の緑のまま。余計な印だけ消してピンを主役に ===== */
+    var MAP_STYLE = [
+      { featureType: 'poi', stylers: [{ visibility: 'off' }] },                 // 施設の細かい印は消す
+      { featureType: 'poi.park', stylers: [{ visibility: 'on' }] },             // 公園の緑は残す
+      { featureType: 'poi.attraction', stylers: [{ visibility: 'on' }] },       // 観光地の名前は残す
+      { featureType: 'transit', stylers: [{ visibility: 'off' }] },             // 乗換の印は消す
+      { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] }
+    ];
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('gmap'), {
+        mapTypeControl: false,        // 「地図」「航空写真」の切替は出さない
+        streetViewControl: false,
+        fullscreenControl: true,
+        clickableIcons: false,        // Google側の施設吹き出しは出さない
+        backgroundColor: '#E8EDE3',
+        styles: MAP_STYLE,
+        gestureHandling: 'cooperative'  // スマホの1本指スクロールを妨げない
+      });
+      info = new google.maps.InfoWindow({ maxWidth: 250 });
+      map.addListener('click', function () { closeCard(); });
+      var b = new google.maps.LatLngBounds();
+      SPOTS.forEach(function (s, i) {
+        var m = new google.maps.Marker({
+          position: { lat: s.a, lng: s.o }, map: map,
+          title: (i + 1) + '. ' + s.n + (s.r ? ' ' + stars(s.r) : ''),
+          icon: pin(i, false),
+          zIndex: 1
+        });
+        m.addListener('click', function () { select(i); });
+        marks[i] = m;
+        b.extend(m.getPosition());
+      });
+      map.fitBounds(b, 40);
+      if (SPOTS.length) select(0, true);   // 全体を見せたまま、1件目を選んだ状態で始める
+    }
+    function sheetOpen(on) {
+      var sh = document.getElementById('sheet');
+      var sc = document.getElementById('scrim');
+      sh.classList.toggle('open', on);
+      document.getElementById('sToggle').setAttribute('aria-expanded', String(on));
+      if (on) {
+        sc.hidden = false;
+        requestAnimationFrame(function () { sc.classList.add('on'); });
+      } else {
+        sc.classList.remove('on');
+        setTimeout(function () { if (!sh.classList.contains('open')) sc.hidden = true; }, 300);
+      }
+      if (on) hideCard();   /* 一覧を開くときはカードを隠す */
+      if (on &amp;&amp; cur >= 0) {
+        var el = document.querySelector('#sheetBody [data-i=&quot;' + cur + '&quot;]');
+        if (el) el.scrollIntoView({ block: 'center' });
+      }
+    }
+    /* カード用の星: 塗り★+白抜き☆ で5点満点 */
+    function starsCard(r) {
+      var s = '';
+      for (var i = 0; i < 5; i++) s += (i < r) ? '\u2605' : '\u2606';
+      return s;
+    }
+    /* 詳細カードの中身: × / 名前 / 星(中央揃え) / 前へ・GoogleMapへ・次へ */
+    function cardHTML(s, i) {
+      var g = 'https://www.google.com/maps/search/?api=1&amp;query=' + s.a + ',' + s.o;
+      return '<div class=&quot;iw&quot;>'
+        + '<button type=&quot;button&quot; class=&quot;x&quot; onclick=&quot;closeCard()&quot; aria-label=&quot;閉じる&quot;>\u2715</button>'
+        + (s.c ? '<span class=&quot;c&quot;>' + s.c + '</span>' : '')
+        + '<span class=&quot;n&quot;>' + s.n + '</span>'
+        + (s.r ? '<span class=&quot;r&quot;>' + starsCard(s.r) + '</span>' : '')
+        + '<div class=&quot;iwnav&quot;>'
+        + '<button type=&quot;button&quot; onclick=&quot;step(-1)&quot; aria-label=&quot;前の場所へ&quot;' + (i <= 0 ? ' disabled' : '') + '>\u2039</button>'
+        + '<a href=&quot;' + g + '&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>GoogleMapへ</a>'
+        + '<button type=&quot;button&quot; onclick=&quot;step(1)&quot; aria-label=&quot;次の場所へ&quot;' + (i >= SPOTS.length - 1 ? ' disabled' : '') + '>\u203A</button>'
+        + '</div></div>';
+    }
+    /* 狭い画面では吹き出しが地図からはみ出すので、下端の固定カードに切り替える */
+    function isNarrow() { return window.matchMedia('(max-width: 760px)').matches; }
+    function hideCard() { document.getElementById('mcard').hidden = true; }
+    function closeCard() { info.close(); hideCard(); }
+    function select(i, noPan) {
+      var s = SPOTS[i], m = marks[i];
+      if (!m) return;
+      cur = i;
+      if (!noPan) {
+        map.panTo(m.getPosition());
+        if (map.getZoom() < 13) map.setZoom(13);
+      }
+      if (!noPan) {
+        if (isNarrow()) {
+          info.close();
+          var mc = document.getElementById('mcard');
+          mc.innerHTML = cardHTML(s, i);
+          mc.hidden = false;
+        } else {
+          hideCard();
+          info.setContent(cardHTML(s, i));
+          info.open(map, m);
+        }
+      }
+      marks.forEach(function (mk, k) { mk.setIcon(pin(k, false)); mk.setZIndex(1); });
+      m.setIcon(pin(i, true));
+      m.setZIndex(2);   // 重なった時も選択中のピンが手前に
+      document.querySelectorAll('[data-i]').forEach(function (el) {
+        el.setAttribute('aria-current', String(+el.getAttribute('data-i') === i));
+      });
+      var row = document.querySelector('.listbody [data-i=&quot;' + i + '&quot;]');
+      if (row) {   // 一覧の見えている範囲に無ければ、その行まで滑らせる
+        var box = document.querySelector('.listbody');
+        var rt = row.offsetTop, rb = rt + row.offsetHeight;
+        if (rt < box.scrollTop + 28 || rb > box.scrollTop + box.clientHeight)
+          box.scrollTo({ top: rt - box.clientHeight / 2 + row.offsetHeight / 2, behavior: 'smooth' });
+      }
+      var label = '<span class=&quot;cnt&quot;>' + (i + 1) + ' / ' + SPOTS.length + '</span>' + s.n
+        + (s.r ? ' <span class=&quot;st&quot;>' + stars5(s.r) + '</span>' : '');
+      document.getElementById('now').innerHTML = label;
+      document.getElementById('sTx').innerHTML = label;
+      ['prev','sPrev'].forEach(function (id) { document.getElementById(id).disabled = (i <= 0); });
+      ['next','sNext'].forEach(function (id) { document.getElementById(id).disabled = (i >= SPOTS.length - 1); });
+      /* 記事ページ側の『◯◯へ』リンクに、今選んでいる場所を伝える */
+      try {
+        if (window.parent &amp;&amp; window.parent !== window)
+          window.parent.postMessage({ quinaryMapSpot: true, name: s.n,
+            url: 'https://www.google.com/maps/search/?api=1&amp;query=' + s.a + ',' + s.o }, '*');
+      } catch (e) {}
+    }
+    function step(d) {
+      if (cur < 0) { select(d > 0 ? 0 : SPOTS.length - 1); return; }
+      if (SPOTS[cur + d]) select(cur + d);
+    }
+    /* 一覧(PC/スマホ両方)の星をSPOTSから自動で流し込む。HTML側の書き換え忘れを防ぐ */
+    document.querySelectorAll('[data-i]').forEach(function (el) {
+      var s = SPOTS[+el.getAttribute('data-i')];
+      var st = el.querySelector('.st');
+      if (st &amp;&amp; s) st.innerHTML = s.r ? stars5(s.r) : '';
+    });
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-i]');
+      if (!b) return;
+      select(+b.getAttribute('data-i'));
+      if (b.closest('.sheetbody')) sheetOpen(false);   // 一覧から選んだら閉じて地図へ
+    });
+    document.getElementById('scrim').addEventListener('click', function () { sheetOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') sheetOpen(false);
+    });
+    document.getElementById('sToggle').addEventListener('click', function () {
+      sheetOpen(!document.getElementById('sheet').classList.contains('open'));
+    });
+    document.getElementById('fitAll').addEventListener('click', function () {
+      closeCard();
+      var b = new google.maps.LatLngBounds();
+      marks.forEach(function (m) { b.extend(m.getPosition()); });
+      map.fitBounds(b, 40);
+    });
+    document.getElementById('prev').addEventListener('click', function () { step(-1); });
+    document.getElementById('next').addEventListener('click', function () { step(1); });
+    var lastScale = 0;
+    window.addEventListener('resize', function () {
+      var sc = pinScale();
+      if (sc === lastScale) return;
+      lastScale = sc;
+      marks.forEach(function (mk, k) { mk.setIcon(pin(k, k === cur)); });
+    });
+    document.getElementById('sPrev').addEventListener('click', function () { step(-1); });
+    document.getElementById('sNext').addEventListener('click', function () { step(1); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    });
+  </script>
+
+  <!-- ============================================================
+       Googleマップの利用キー
+       下の行の  key=  のすぐ後ろ(&amp;language=ja の手前)がキーです。
+       手元で確認するときは、そこをテスト用キーに差し替えてください。
+       サーバーに上げるときは、本番用キーに戻します。
+       ============================================================ -->
+  <script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyCPG8oFwOwrk9dFc7g-8ezQ-BDBjqw3EXI&amp;language=ja&amp;region=JP&amp;callback=initMap&quot; async defer></script>
+</body>
+</html>
+" loading="lazy"></iframe>
+      </div>
+      <div class="maprow">
+        <span class="mapnote">
+                    <p class="maplink">「地図」と「航空写真」の表示を切り替えてご覧ください</p>
+        </span>
+        <a class="spotlink" id="spotLink" href="#" target="_blank" rel="noopener" hidden></a>
+      </div>
+    </div>
+
+    <div class="spots">
+      <section class="spot">
+        <h2>チチェン・イツァー<span class="rank" aria-label="評価 星5">☆☆☆☆☆</span></h2>
+        <p>ユカタン半島北部のマヤ低地に栄えた都市遺跡</p>
+        <p>AD300年頃に成立しマヤ文明の中心がグアテマラの高地からマヤ低地南部を経てマヤ低地北部に移っていくなか、800年台にこの地にたどり着いたイツアー人によって繁栄がもたらされたとされる</p>
+        <p>当初建設された現在の遺跡の南側は北部マヤ低地に見られるマヤのプウク様式だが、メキシコ中部に栄えたトルテカが10世紀末に侵入して来た際に建設された北側はトルテカ文明の影響が強く見られる</p>
+        <p>「ククルカンの神殿」と呼ばれる均整の取れた美しいピラミッド、「聖なるセノーテ(泉)」、巨大な球戯場、「戦士の神殿」等見ごたえ十分(2015)</p>
+
+        <div class="sub">
+          <h3>遺跡北側(新チチェン・イツァー)</h3>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">ククルカンの神殿（エル・カスティージョ）</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6417_3_lb.jpg"><img src="dscf6417_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6428_3_lb.jpg"><img src="dscf6428_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6546_3_lb.jpg"><img src="dscf6546_2.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">ジャガーの神殿</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248">球戯場</td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6436_2_4_lb.jpg"><img src="dscf6436_2_3.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6443_3_lb.jpg"><img src="dscf6443_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6452_3_lb.jpg"><img src="dscf6452_2.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">ツォンパントリ</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6462_3_lb.jpg"><img src="dscf6462_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6469_3_lb.jpg"><img src="dscf6469_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6468_3_lb.jpg"><img src="dscf6468_2.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">鷲とジャガーの基壇</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6490_3_lb.jpg"><img src="dscf6490_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6491_3_lb.jpg"><img src="dscf6491_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6492_2_4_lb.jpg"><img src="dscf6492_2_3.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">金星の基壇</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6501_3_lb.jpg"><img src="dscf6501_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6504_3_lb.jpg"><img src="dscf6504_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6507_2_4_lb.jpg"><img src="dscf6507_2_3.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">聖なるセノーテ</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph one" style="grid-template-columns:repeat(1,1fr)">
+            <a class="pht" href="dscf6538_3_lb.jpg"><img src="dscf6538_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">戦士の神殿</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf6511_3_lb.jpg"><img src="dscf6511_3_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6516_3_lb.jpg"><img src="dscf6516_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">大きなテーブルの神殿</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6522_3_lb.jpg"><img src="dscf6522_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6524_3_lb.jpg"><img src="dscf6524_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6525_3_lb.jpg"><img src="dscf6525_2.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">北の列柱</td>
+        <td align="left" valign="middle" width="248">南西の列柱</td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf6529_3_lb.jpg"><img src="dscf6529_3_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6533_3_lb.jpg"><img src="dscf6533_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>遺跡南側(旧チチェン・イツァー)</h3>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">高僧の墳墓</td>
+        <td align="left" valign="middle" width="248">赤い家</td>
+        <td align="left" valign="middle" width="248">カラコル(天文台)</td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf6548_3_lb.jpg"><img src="dscf6548_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6581_3_lb.jpg"><img src="dscf6581_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6578_3_lb.jpg"><img src="dscf6578_2.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">尼僧院</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf6573_3_lb.jpg"><img src="dscf6573_3_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6563_3_lb.jpg"><img src="dscf6563_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="tblwrap"><!-- 元の表を原文のまま残しています -->
+            <table border="0" height="20" class="table2">
+    <tbody>
+      <tr>
+        <td align="left" valign="middle" width="248">教会</td>
+        <td align="left" valign="middle" width="248"></td>
+        <td align="left" valign="middle" width="248"></td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf6569_3_lb.jpg"><img src="dscf6569_3_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf6565_3_lb.jpg"><img src="dscf6565_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Copyright (C) 2012-2026 the Quinary. All Rights Reserved.</p>
+  </footer>
+
+  <!-- 引き出しメニュー:ボタンを押すと横から出てきます -->
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="サイト全体メニュー">
+    <div class="dh">
+      <b>QUINARY</b>
+      <button class="dclose" id="drawerClose" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <ul class="tree">
+      <li><div class="row"><a class="lnk" href="index.html">トップ</a></div></li>
+      <li class="br open">
+        <div class="row"><span class="cdot" style="background:#27427A"></span><a class="lnk" href="world_top.html">世界へ</a><button class="tw" type="button" aria-expanded="true" aria-label="世界へを開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="asia_top.html">アジア</a></div></li>
+          <li><div class="row"><a class="lnk" href="mideast_top.html">中東</a></div></li>
+          <li><div class="row"><a class="lnk" href="europe_top.html">ヨーロッパ</a></div></li>
+          <li><div class="row"><a class="lnk" href="africa_top.html">アフリカ</a></div></li>
+          <li><div class="row"><a class="lnk" href="nothamerica_top.html">北米</a></div></li>
+          <li class="br open">
+            <div class="row"><a class="lnk" href="centralamerica_top.html">中米</a><button class="tw" type="button" aria-expanded="true" aria-label="中米を開閉"></button></div>
+            <ul>
+              <li class="br open">
+                <div class="row"><a class="lnk" href="maya.html">マヤの遺跡</a><button class="tw" type="button" aria-expanded="true" aria-label="マヤの遺跡を開閉"></button></div>
+                <ul>
+                  <li><div class="row"><a class="lnk" href="copan.html">コパン</a></div></li>
+                  <li><div class="row"><a class="lnk" href="quirigua.html">キリグア</a></div></li>
+                  <li><div class="row"><a class="lnk" href="tikal.html">ティカル</a></div></li>
+                  <li><div class="row"><a class="lnk" href="caracol.html">カラコル</a></div></li>
+                  <li><div class="row"><a class="lnk" href="calakmul.html">カラクムル</a></div></li>
+                  <li><div class="row"><a class="lnk" href="riobec.html">カラクムル周辺</a></div></li>
+                  <li><div class="row"><a class="lnk" href="palenque.html">パレンケ</a></div></li>
+                  <li><div class="row"><a class="lnk" href="edzna.html">エズナ</a></div></li>
+                  <li><div class="row"><a class="lnk" href="uxmal.html">ウシュマル</a></div></li>
+                  <li><div class="row"><a class="lnk" href="puuc.html">ウシュマル周辺</a></div></li>
+                  <li><div class="row"><a class="lnk" href="mayapan.html">マヤパン</a></div></li>
+                  <li><div class="row"><a class="lnk cur" aria-current="page" href="chichen.html">チチェン・イツァー</a></div></li>
+                  <li><div class="row"><a class="lnk" href="tulum.html">トゥルム</a></div></li>
+                </ul>
+              </li>
+              <li><div class="row"><a class="lnk" href="cenote.html">セノーテ・ダイビング</a></div></li>
+              <li><div class="row"><a class="lnk" href="mexico.html">メキシコ</a></div></li>
+              <li><div class="row"><a class="lnk" href="guatemala.html">グアテマラ</a></div></li>
+              <li><div class="row"><a class="lnk" href="honduras.html">ホンジュラス</a></div></li>
+              <li><div class="row"><a class="lnk" href="belize.html">ベリーズ</a></div></li>
+              <li><div class="row"><a class="lnk" href="cuba.html">キューバ</a></div></li>
+            </ul>
+          </li>
+          <li><div class="row"><a class="lnk" href="southamerica_top.html">南米</a></div></li>
+          <li><div class="row"><a class="lnk" href="oceania_top.html">オセアニア</a></div></li>
+        </ul>
+      </li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#2E6E6A"></span><a class="lnk" href="onsen_top.html">温泉</a><button class="tw" type="button" aria-expanded="false" aria-label="温泉を開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="onsen_hokkaido.html">北海道</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_tohoku.html">東北</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_kanto.html">関東</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_chubu.html">中部</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_chugokushikoku.html">中国、四国</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_kyusyu.html">九州</a></div></li>
+        </ul>
+      </li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#C0637C"></span><a class="lnk" href="sakura_top.html">さくら</a><button class="tw" type="button" aria-expanded="false" aria-label="さくらを開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="sakura_tohoku.html">東北</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_miharu.html">三春</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_kanto.html">関東</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_chubu.html">中部</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_kansai.html">関西</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_chugokushikoku.html">中国、四国、九州</a></div></li>
+        </ul>
+      </li>
+      <li><div class="row"><span class="cdot" style="background:#4C6444"></span><a class="lnk" href="88_top.html">お遍路</a></div></li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#B5493C"></span><a class="lnk" href="landscape_top.html">風景、祭り</a><button class="tw" type="button" aria-expanded="false" aria-label="風景、祭りを開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="landscape_furano.html">富良野、美瑛</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_oirase.html">奥入瀬</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_nebuta.html">ねぶた、ねぷた、竿灯</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_oze.html">尾瀬</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_owara.html">おわら風の盆</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_yosakoi.html">よさこい祭り、阿波おどり、郡上おどり</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_yakushima.html">屋久島、種子島</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_diving.html">南西諸島</a></div></li>
+        </ul>
+      </li>
+      <li><div class="row"><a class="lnk" href="blog.html">ブログ</a></div></li>
+    </ul>
+  </aside>
+
+  <div class="lb" id="lb" role="dialog" aria-label="写真の拡大表示">
+    <img id="lbimg" alt="">
+  </div>
+
+  <button id="toTop" class="totop" type="button" aria-label="ページの上へ戻る">↑</button>
+
+  <script>
+    (function () {
+      /* 地図(枠の中)で場所が選ばれたら、地図の下の『◯◯へ』リンクを差し替える */
+      window.addEventListener('message', function (ev) {
+        var d = ev && ev.data;
+        if (!d || !d.quinaryMapSpot) return;
+        var a = document.getElementById('spotLink');
+        if (!a) return;
+        var nm = String(d.name || '');
+        var sh = nm.length > 4 ? nm.slice(0, 4) + '…' : nm;   /* 名前は4文字まで */
+        a.textContent = sh + 'へ';
+        a.href = d.url || '#';
+        a.hidden = !nm;
+      });
+      var body = document.body;
+      var btn = document.getElementById('menuBtn');
+      var closeBtn = document.getElementById('drawerClose');
+      var scrim = document.getElementById('scrim');
+
+      function openNav() {
+        body.classList.add('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+      function closeNav() {
+        body.classList.remove('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+
+      if (btn) btn.addEventListener('click', function () {
+        body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      if (closeBtn) closeBtn.addEventListener('click', closeNav);
+      if (scrim) scrim.addEventListener('click', closeNav);
+
+      // メニューの枝の開閉(高さをなめらかに変える)
+      function childUl(li) {
+        for (var i = 0; i < li.children.length; i++) {
+          if (li.children[i].tagName.toLowerCase() === 'ul') return li.children[i];
+        }
+        return null;
+      }
+      document.querySelectorAll('.tree .tw').forEach(function (t) {
+        t.addEventListener('click', function () {
+          var li = t.closest('li');
+          var ul = childUl(li);
+          var wasOpen = li.classList.contains('open');
+          t.setAttribute('aria-expanded', wasOpen ? 'false' : 'true');
+          var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!ul || reduce) { li.classList.toggle('open'); return; }
+          var done = false;
+          function finish() {
+            if (done) return;
+            done = true;
+            ul.classList.remove('anim');
+            ul.style.height = '';
+            if (wasOpen) li.classList.remove('open');
+          }
+          ul.addEventListener('transitionend', finish, { once: true });
+          setTimeout(finish, 400);
+          if (wasOpen) {
+            ul.style.height = ul.scrollHeight + 'px';
+            ul.classList.add('anim');
+            requestAnimationFrame(function () { ul.style.height = '0px'; });
+          } else {
+            li.classList.add('open');
+            ul.style.height = '0px';
+            ul.classList.add('anim');
+            requestAnimationFrame(function () { ul.style.height = ul.scrollHeight + 'px'; });
+          }
+        });
+      });
+
+      // 写真の拡大表示
+      var lb = document.getElementById('lb');
+      var lbimg = document.getElementById('lbimg');
+      document.querySelectorAll('.pht').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var href = a.getAttribute('href') || '';
+          if (!/\.(jpe?g|png|gif|webp)$/i.test(href)) return; // 動画などはそのまま開く
+          e.preventDefault();
+          lbimg.src = a.getAttribute('href');
+          lb.classList.add('show');
+        });
+      });
+      if (lb) lb.addEventListener('click', function () {
+        lb.classList.remove('show');
+        lbimg.src = '';
+      });
+
+      // スクロール連動: SINCEの非表示と、上に戻る釦
+      var reduceAll = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var toTop = document.getElementById('toTop');
+      function onScroll() {
+        var y = window.pageYOffset || 0;
+        document.body.classList.toggle('scrolled', y > 8);
+        if (toTop) toTop.classList.toggle('show', y > 600);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      if (toTop) toTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceAll ? 'auto' : 'smooth' });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          lb.classList.remove('show');
+          lbimg.src = '';
+          closeNav();
+        }
+      });
+
+      // ゆっくり現れる表示(対応しない環境ではすぐ全部表示)
+      var spots = document.querySelectorAll('.spot');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!('IntersectionObserver' in window) || reduce) {
+        spots.forEach(function (sp) { sp.classList.add('vis'); });
+      } else {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px' });
+        spots.forEach(function (sp) { io.observe(sp); });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
