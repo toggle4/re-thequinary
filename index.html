@@ -214,6 +214,7 @@
     }
     .spotlink {
       margin-top:8px;
+      margin-left:auto;
       font-family:var(--fu);
       font-size:11.5px;
       letter-spacing:.08em;
@@ -744,12 +745,507 @@
     <!-- 地図:別途アップロードした地図ファイルを読み込みます -->
     <div class="map">
       <div class="mapfrm">
-        <iframe title="地図" src="https://www.thequinary.com/map/cambodia.html" loading="lazy"></iframe>
+        <iframe title="地図" srcdoc="<!DOCTYPE html>
+<!-- quinary-map v4 整える工程が生成した地図 -->
+<!-- PC: 左に一覧+右に地図 / スマホ: 地図が全面+下から出る一覧(タップ切替) -->
+<html lang=&quot;ja&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot;>
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+  <title>地図</title>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+  <style>
+    :root { --accent: #27427A; --deep: #9a2213; --shu: #d62f1b; --soft: #27427A1F; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; position: relative; overflow: hidden;
+      background: #F4EFE4; color: #2B2925;
+      font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; letter-spacing: .06em; }
+    /* ===== PC: 左に一覧、右に地図 ===== */
+    .mapunit { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 225px 1fr;
+      background: #FBF8F1; }
+    #list { border-right: 1px solid #B9B2A0; display: flex; flex-direction: column;
+      min-height: 0; background: #FBF8F1; }
+    .listhead { flex: none; display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; padding: 11px 14px; border-bottom: 1px solid #B9B2A0;
+      font-size: 10.5px; letter-spacing: .16em; color: #7A7462; }
+    .listhead button { appearance: none; cursor: pointer; border: 1px solid #B9B2A0;
+      background: none; color: #7A7462; font: inherit; letter-spacing: .12em;
+      padding: 4px 9px; transition: color .2s, border-color .2s, background .2s; }
+    .listhead button:hover { color: var(--accent); border-color: var(--accent);
+      background: var(--soft); }
+    .listbody { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-bottom: 14px;
+      scrollbar-width: thin; scrollbar-color: #CFC7B4 transparent; }
+    .listbody::-webkit-scrollbar { width: 8px; }
+    .listbody::-webkit-scrollbar-thumb { background: #CFC7B4; }
+    .listbody::-webkit-scrollbar-track { background: transparent; }
+    .cityhead { font-family: 'Shippori Mincho', serif; font-size: 12.5px; letter-spacing: .16em;
+      color: #7A7462; padding: 14px 16px 5px; position: sticky; top: 0; z-index: 1;
+      background: linear-gradient(#FBF8F1 78%, rgba(251,248,241,0)); }
+    #list button, .sheetbody button { appearance: none; border: 0; background: none; cursor: pointer;
+      width: 100%; display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+      text-align: left; font: inherit; color: inherit; border-left: 2px solid transparent; }
+    #list button { padding: 9px 14px 9px 14px; line-height: 1.6;
+      border-bottom: 1px solid rgba(185,178,160,.3); transition: background .18s; }
+    #list button:hover { background: var(--soft); }
+    #list button[aria-current=&quot;true&quot;] .no { color: var(--accent); }
+    #list button[aria-current=&quot;true&quot;] .nm { font-weight: 500; }
+    #list button[aria-current=&quot;true&quot;], .sheetbody button[aria-current=&quot;true&quot;] {
+      background: var(--soft); border-left-color: var(--accent); }
+    /* 星: 塗り = 藍 / 空き = 薄い生成り。5点満点が一目で分かる */
+    .st { color: var(--accent); font-size: 11px; letter-spacing: .14em; white-space: nowrap; }
+    .st i { color: #D5CDB8; font-style: normal; }
+    .nm { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+    .no { font-style: normal; font-size: 10.5px; color: #7A7462; min-width: 17px;
+      font-variant-numeric: tabular-nums; }
+    #gmap { min-height: 0; }
+    /* ===== PC: 地図の下の旅程バー ===== */
+    .storybar { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center;
+      background: #FBF8F1; border-top: 1px solid #B9B2A0; padding: 7px 10px; }
+    .storybar button { appearance: none; cursor: pointer; border: 1px solid #B9B2A0;
+      background: none; color: inherit; padding: 6px 13px; font: inherit; font-size: 11.5px;
+      letter-spacing: .12em; }
+    .storybar button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent);
+      background: var(--soft); }
+    .storybar button:disabled { opacity: .35; cursor: default; }
+    .now { text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .now .cnt { color: var(--accent); margin-right: 9px; font-variant-numeric: tabular-nums; }
+    .now .ph { color: #7A7462; font-size: 12px; }
+    /* ===== スマホ: 下から出る一覧(タップで開閉・引っぱり操作なし) ===== */
+    .sheet { display: none; position: absolute; left: 0; right: 0; bottom: 0; z-index: 5;
+      height: 62%; background: #FBF8F1; border-top: 1px solid #B9B2A0;
+      box-shadow: 0 -4px 18px rgba(43,41,37,.18);
+      transform: translateY(calc(100% - 54px));
+      transition: transform .3s ease; }
+    .sheet.open { transform: translateY(0); }
+    .scrim { display: none; position: absolute; inset: 0; z-index: 4;
+      background: rgba(43,41,37,.28); opacity: 0; transition: opacity .3s; }
+    .scrim.on { opacity: 1; }
+    .sheethead { display: grid; grid-template-columns: 76px 1fr 76px; height: 58px;
+      border-bottom: 1px solid #B9B2A0; }
+    .sheethead button { appearance: none; border: 0; background: none; cursor: pointer;
+      font: inherit; color: inherit; }
+    .sheethead .step { font-size: 13px; letter-spacing: .1em; color: var(--accent); }
+    .sheethead .step:disabled { opacity: .28; }
+    .sheethead .step.p { border-right: 1px solid rgba(185,178,160,.6); }
+    .sheethead .step.n { border-left: 1px solid rgba(185,178,160,.6); }
+    .sheettoggle { display: flex; align-items: center; justify-content: center; gap: 9px;
+      min-width: 0; padding: 0 6px; }
+    .sheettoggle .tx { overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      font-size: 14.5px; font-weight: 500; letter-spacing: .06em; }
+    .sheettoggle .cnt { color: #7A7462; font-size: 11px; margin-right: 8px;
+      font-variant-numeric: tabular-nums; font-weight: 400; }
+    .sheettoggle .chev { flex: none; color: var(--accent); font-size: 9px;
+      transition: transform .3s; }
+    .sheet.open .chev { transform: rotate(180deg); }
+    .sheet.open .sheettoggle .cnt { display: none; }
+    .sheetbody { height: calc(100% - 54px); overflow-y: auto;
+      -webkit-overflow-scrolling: touch; padding: 4px 0 14px; }
+    .sheetbody .cityhead { position: sticky; top: 0; background: #FBF8F1; z-index: 1;
+      padding: 12px 18px 5px; }
+    .sheetbody button { padding: 13px 18px 13px 26px; font-size: 14px;
+      border-bottom: 1px solid rgba(185,178,160,.35); }
+    /* ===== 幅ごとの出し分け ===== */
+    @media (max-width: 760px) {
+      .mapunit { grid-template-columns: 1fr; }
+      #list { display: none; }        /* 左一覧はPCだけ */
+      .storybar { display: none; }    /* 旅程バーは下の一覧に統合 */
+      .sheet { display: block; }
+      .scrim:not([hidden]) { display: block; }   /* 一覧の外を押すと閉じる */
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sheet, .sheettoggle .chev, .scrim { transition: none; }
+    }
+    /* ===== 吹き出し(選んだ場所の詳細カード) 参考画像のデザイン =====
+       Google側の枠は透明にして、カードの見た目は .iw だけで作る(帯のズレ防止)
+       角丸のクリーム地 / 左端に藍の帯 / 右上に× / 名前と星は中央揃え / 下段に ‹ ・GoogleMapへ・› */
+    .gm-style .gm-style-iw-c { border-radius: 0 !important; background: transparent !important;
+      border: 0 !important; box-shadow: none !important; padding: 0 !important;
+      max-width: 260px !important; overflow: visible !important; }
+    .gm-style .gm-style-iw-d { overflow: visible !important; max-height: none !important;
+      padding: 0 !important; background: transparent !important; }
+    .gm-style .gm-style-iw-tc { display: none !important; }   /* 下の三角は出さない */
+    .gm-style .gm-style-iw-c button.gm-ui-hover-effect { display: none !important; }
+    /* 既定は控えめな大きさ。広い枠のときだけ大きくする(下の min-width 指定) */
+    .iw { position: relative; box-sizing: border-box; min-width: 172px;
+      background: #F8F4E6; border-radius: 11px; overflow: hidden;
+      box-shadow: 0 4px 14px rgba(43,41,37,.22);
+      padding: 11px 12px 4px 18px; font-family: 'Zen Kaku Gothic New', sans-serif; }
+    /* 左の帯は擬似要素。角丸で切り抜くので、帯と地の境目は直線になる */
+    .iw::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 6px; background: var(--accent); }
+    .iw .x { position: absolute; top: 2px; right: 2px; appearance: none; border: 0;
+      background: none; cursor: pointer; width: 26px; height: 26px; line-height: 1;
+      font-size: 14px; color: #4A4741; padding: 0; }
+    .iw .x:hover { color: var(--deep); }
+    .iw .c { display: block; text-align: center; font-size: 10px; letter-spacing: .2em;
+      color: #7A7462; margin-bottom: 2px; }
+    .iw .n { display: block; text-align: center; font-weight: 700; font-size: 13.5px;
+      letter-spacing: .06em; line-height: 1.45; color: #3D3B36; padding: 0 22px; }
+    .iw .r { display: block; text-align: center; margin-top: 3px; color: #3D3B36;
+      font-size: 12px; letter-spacing: .14em; }
+    .iw .iwnav { display: flex; align-items: center; margin-top: 8px;
+      border-top: 1px solid rgba(122,116,98,.4); padding: 5px 0 0; }
+    .iw .iwnav button { appearance: none; cursor: pointer; border: 0; background: none;
+      color: #3D3B36; font: inherit; font-size: 15px; line-height: 1;
+      width: 36px; height: 26px; flex: none; }
+    .iw .iwnav button:hover:not(:disabled) { color: var(--accent); }
+    .iw .iwnav button:disabled { opacity: .28; cursor: default; }
+    .iw .iwnav a { flex: 1 1 auto; text-align: center; color: #45A5C9;
+      text-decoration: none; font-size: 13px; letter-spacing: .06em; white-space: nowrap; }
+    .iw .iwnav a:hover { text-decoration: underline; }
+    /* 枠が広いときだけ、ゆったりした大きさに戻す */
+    @media (min-width: 900px) and (min-height: 560px) {
+      .iw { min-width: 230px; border-radius: 14px; padding: 16px 16px 8px 25px; }
+      .iw::before { width: 9px; }
+      .iw .x { top: 5px; right: 5px; width: 30px; height: 30px; font-size: 16px; }
+      .iw .n { font-size: 17px; letter-spacing: .1em; padding: 0 26px; }
+      .iw .r { font-size: 15px; margin-top: 5px; letter-spacing: .18em; }
+      .iw .iwnav { margin-top: 12px; padding-top: 7px; }
+      .iw .iwnav button { font-size: 17px; width: 44px; height: 30px; }
+      .iw .iwnav a { font-size: 13px; }
+    }
+    /* ===== 小さな枠(記事の中のスマホ表示): 全体を引き締める ===== */
+    @media (max-width: 480px) {
+      .sheethead { grid-template-columns: 58px 1fr 58px; height: 46px; }
+      .sheethead .step { font-size: 11.5px; }
+      .sheettoggle .tx { font-size: 13px; }
+      .sheettoggle .cnt { font-size: 10px; margin-right: 6px; }
+      .sheetbody button { padding: 11px 16px 11px 22px; font-size: 13px; }
+      .sheet { transform: translateY(calc(100% - 46px)); height: 70%; }
+      .sheet.open { transform: translateY(0); }
+    }
+    /* ===== スマホ: 吹き出しの代わりに、地図の下端に置く固定カード ===== */
+    .mcard { display: none; }
+    @media (max-width: 760px) {
+      .mcard { display: block; position: absolute; left: 10px; right: 10px;
+        bottom: 68px; z-index: 6; }
+      .mcard[hidden] { display: none; }
+      .mcard .iw { min-width: 0; width: 100%; padding: 14px 14px 6px 21px;
+        border-radius: 12px; }
+      .mcard .iw::before { width: 7px; }
+      .mcard .iw .n { font-size: 16px; padding: 0 26px; letter-spacing: .06em; }
+      .mcard .iw .r { font-size: 15px; margin-top: 4px; }
+      .mcard .iw .iwnav { display: none; }   /* 下端バーに前へ/次へがあるので出さない */
+      .mcard .iw { padding-bottom: 12px; }
+    }
+    @media (max-width: 480px) {
+      .mcard { left: 8px; right: 8px; bottom: 54px; }
+      .mcard .iw { padding: 10px 10px 3px 15px; border-radius: 10px; }
+      .mcard .iw::before { width: 5px; }
+      .mcard .iw .n { font-size: 13.5px; padding: 0 24px; }
+      .mcard .iw .r { font-size: 12px; margin-top: 2px; letter-spacing: .14em; }
+      .mcard .iw .c { font-size: 9px; margin-bottom: 1px; }
+      .mcard .iw .x { top: 2px; right: 2px; width: 26px; height: 26px; font-size: 14px; }
+      .mcard .iw { padding-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class=&quot;mapunit&quot;>
+    <nav id=&quot;list&quot; aria-label=&quot;場所の一覧&quot;>
+      <div class=&quot;listhead&quot;>
+        <span>場所 21件</span>
+        <button type=&quot;button&quot; id=&quot;fitAll&quot;>全体を見る</button>
+      </div>
+      <div class=&quot;listbody&quot;>
+        <button type=&quot;button&quot; data-i=&quot;0&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>1</i>アンコール・ワット</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;1&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>2</i>アンコール・トム（バイヨン）</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;2&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>3</i>像のテラス</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;3&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>4</i>ピミアナカス</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;4&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>5</i>プレア・ピチュ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;5&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>6</i>プリア・カーン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;6&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>7</i>ニャク・ポアン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;7&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>8</i>タ・ケオ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;8&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>9</i>タ・プロム</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;9&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>10</i>東メボン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;10&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>11</i>プレ・ループ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;11&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>12</i>バンテアイ・クデイ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;12&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>13</i>プラサット・クラバン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;13&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>14</i>バンテアイ・サレム</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;14&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>15</i>バンテアイ・スレイ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;15&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>16</i>クバル・スピアン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;16&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>17</i>ベン・メリア</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;17&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>18</i>ロレイ</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;18&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>19</i>プリア・コー</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;19&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>20</i>バコン</span><span class=&quot;st&quot;></span></button>
+        <button type=&quot;button&quot; data-i=&quot;20&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>21</i>トンレサップ湖</span><span class=&quot;st&quot;></span></button>
+      </div>
+    </nav>
+    <div id=&quot;gmap&quot; role=&quot;application&quot; aria-label=&quot;訪れた場所の地図&quot;></div>
+  </div>
+  <div class=&quot;storybar&quot;>
+    <button type=&quot;button&quot; id=&quot;prev&quot; aria-label=&quot;前の場所へ&quot;>← 前へ</button>
+    <p class=&quot;now&quot; id=&quot;now&quot;><span class=&quot;ph&quot;>場所を選ぶと、ここに旅程が出ます</span></p>
+    <button type=&quot;button&quot; id=&quot;next&quot; aria-label=&quot;次の場所へ&quot;>次へ →</button>
+  </div>
+  <div class=&quot;mcard&quot; id=&quot;mcard&quot; hidden></div>
+  <div class=&quot;scrim&quot; id=&quot;scrim&quot; hidden></div>
+  <div class=&quot;sheet&quot; id=&quot;sheet&quot;>
+    <div class=&quot;sheethead&quot;>
+      <button type=&quot;button&quot; class=&quot;step p&quot; id=&quot;sPrev&quot; aria-label=&quot;前の場所へ&quot;>前へ</button>
+      <button type=&quot;button&quot; class=&quot;sheettoggle&quot; id=&quot;sToggle&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;sheetBody&quot;>
+        <span class=&quot;tx&quot; id=&quot;sTx&quot;>アンコール・ワット</span>
+        <span class=&quot;chev&quot;>▼</span>
+      </button>
+      <button type=&quot;button&quot; class=&quot;step n&quot; id=&quot;sNext&quot; aria-label=&quot;次の場所へ&quot;>次へ</button>
+    </div>
+    <div class=&quot;sheetbody&quot; id=&quot;sheetBody&quot;>
+      <button type=&quot;button&quot; data-i=&quot;0&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>1</i>アンコール・ワット</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;1&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>2</i>アンコール・トム（バイヨン）</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;2&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>3</i>像のテラス</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;3&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>4</i>ピミアナカス</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;4&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>5</i>プレア・ピチュ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;5&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>6</i>プリア・カーン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;6&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>7</i>ニャク・ポアン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;7&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>8</i>タ・ケオ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;8&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>9</i>タ・プロム</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;9&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>10</i>東メボン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;10&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>11</i>プレ・ループ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;11&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>12</i>バンテアイ・クデイ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;12&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>13</i>プラサット・クラバン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;13&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>14</i>バンテアイ・サレム</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;14&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>15</i>バンテアイ・スレイ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;15&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>16</i>クバル・スピアン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;16&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>17</i>ベン・メリア</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;17&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>18</i>ロレイ</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;18&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>19</i>プリア・コー</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;19&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>20</i>バコン</span><span class=&quot;st&quot;></span></button>
+      <button type=&quot;button&quot; data-i=&quot;20&quot; aria-current=&quot;false&quot;><span class=&quot;nm&quot;><i class=&quot;no&quot;>21</i>トンレサップ湖</span><span class=&quot;st&quot;></span></button>
+    </div>
+  </div>
+  <script>
+    var SPOTS = [{&quot;n&quot;:&quot;アンコール・ワット&quot;,&quot;a&quot;:13.412622,&quot;o&quot;:103.866205,&quot;r&quot;:4,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:0},{&quot;n&quot;:&quot;アンコール・トム（バイヨン）&quot;,&quot;a&quot;:13.440882,&quot;o&quot;:103.858652,&quot;r&quot;:5,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:1},{&quot;n&quot;:&quot;像のテラス&quot;,&quot;a&quot;:13.446203,&quot;o&quot;:103.85833,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:2},{&quot;n&quot;:&quot;ピミアナカス&quot;,&quot;a&quot;:13.44377,&quot;o&quot;:103.856729,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:3},{&quot;n&quot;:&quot;プレア・ピチュ&quot;,&quot;a&quot;:13.449021,&quot;o&quot;:103.860712,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:4},{&quot;n&quot;:&quot;プリア・カーン&quot;,&quot;a&quot;:13.462752,&quot;o&quot;:103.872299,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:5},{&quot;n&quot;:&quot;ニャク・ポアン&quot;,&quot;a&quot;:13.46342,&quot;o&quot;:103.894958,&quot;r&quot;:2,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:6},{&quot;n&quot;:&quot;タ・ケオ&quot;,&quot;a&quot;:13.444304,&quot;o&quot;:103.882256,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:7},{&quot;n&quot;:&quot;タ・プロム&quot;,&quot;a&quot;:13.434036,&quot;o&quot;:103.889036,&quot;r&quot;:4,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:8},{&quot;n&quot;:&quot;東メボン&quot;,&quot;a&quot;:13.446663,&quot;o&quot;:103.920043,&quot;r&quot;:4,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:9},{&quot;n&quot;:&quot;プレ・ループ&quot;,&quot;a&quot;:13.434996,&quot;o&quot;:103.920858,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:10},{&quot;n&quot;:&quot;バンテアイ・クデイ&quot;,&quot;a&quot;:13.430092,&quot;o&quot;:103.898692,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:11},{&quot;n&quot;:&quot;プラサット・クラバン&quot;,&quot;a&quot;:13.419698,&quot;o&quot;:103.899872,&quot;r&quot;:4,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:12},{&quot;n&quot;:&quot;バンテアイ・サレム&quot;,&quot;a&quot;:13.442176,&quot;o&quot;:103.959031,&quot;r&quot;:2,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:13},{&quot;n&quot;:&quot;バンテアイ・スレイ&quot;,&quot;a&quot;:13.598982,&quot;o&quot;:103.962936,&quot;r&quot;:5,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:14},{&quot;n&quot;:&quot;クバル・スピアン&quot;,&quot;a&quot;:13.681005,&quot;o&quot;:104.020615,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:15},{&quot;n&quot;:&quot;ベン・メリア&quot;,&quot;a&quot;:13.476295,&quot;o&quot;:104.236629,&quot;r&quot;:4,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:16},{&quot;n&quot;:&quot;ロレイ&quot;,&quot;a&quot;:13.352773,&quot;o&quot;:103.973858,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:17},{&quot;n&quot;:&quot;プリア・コー&quot;,&quot;a&quot;:13.34461,&quot;o&quot;:103.971069,&quot;r&quot;:2,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:18},{&quot;n&quot;:&quot;バコン&quot;,&quot;a&quot;:13.335904,&quot;o&quot;:103.974524,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:19},{&quot;n&quot;:&quot;トンレサップ湖&quot;,&quot;a&quot;:13.335904,&quot;o&quot;:103.974524,&quot;r&quot;:3,&quot;c&quot;:&quot;&quot;,&quot;i&quot;:20}];
+    var map, info, marks = [], cur = -1;
+    /* ピン上のtitle(ホバー文言)用: 素の★だけ */
+    function stars(r) { var s = ''; for (var i = 0; i < r; i++) s += '\u2605'; return s; }
+    /* 一覧・カード用: 5点満点で塗り★+空き★(空きは<i>で薄く) */
+    function stars5(r) {
+      var s = '';
+      for (var i = 0; i < 5; i++) s += (i < r) ? '\u2605' : '<i>\u2605</i>';
+      return s;
+    }
+    /* ===== ピン(v5デザイン。試作画像で確認済み) =====
+       雫型 + 立体感のあるグラデ + 生成りの縁取り + ぼかし影。先端が座標を指す
+       普段    : 明るい朱、小さめ
+       選択中  : 深い朱でひと回り大きく、先端に「ここ」を示す波紋が2重に広がる */
+    /* 小さな枠ではピンも小さく(0.68倍) */
+    function pinScale() { return window.matchMedia('(max-width: 480px)').matches ? 0.68 : 1; }
+    function pin(i, active) {
+      var gt = active ? '#D93A22' : '#E8503A';   /* グラデ上端 */
+      var gb = active ? '#9A2213' : '#C22B15';   /* グラデ下端 */
+      var W = Math.round((active ? 46 : 32) * pinScale());
+      var H = Math.round(W * 46 / 34);
+      var id = active ? 'a' : 'n';               /* 2種のアイコンでdefsのidが衝突しないように */
+      var svg = '<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;' + W + '&quot; height=&quot;' + H + '&quot; viewBox=&quot;0 0 34 46&quot;>'
+        + '<defs>'
+        + '<linearGradient id=&quot;b' + id + '&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;0&quot; y2=&quot;1&quot;>'
+          + '<stop offset=&quot;0&quot; stop-color=&quot;' + gt + '&quot;/><stop offset=&quot;1&quot; stop-color=&quot;' + gb + '&quot;/>'
+        + '</linearGradient>'
+        + '<filter id=&quot;s' + id + '&quot; x=&quot;-40%&quot; y=&quot;-40%&quot; width=&quot;180%&quot; height=&quot;180%&quot;>'
+          + '<feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.1&quot;/></filter>'
+        + '</defs>'
+        + (active
+            ? '<circle cx=&quot;17&quot; cy=&quot;42.6&quot; r=&quot;8.4&quot; fill=&quot;none&quot; stroke=&quot;#C22B15&quot; stroke-width=&quot;1.1&quot; opacity=&quot;.35&quot;/>'
+              + '<circle cx=&quot;17&quot; cy=&quot;42.6&quot; r=&quot;4.6&quot; fill=&quot;none&quot; stroke=&quot;#C22B15&quot; stroke-width=&quot;1.2&quot; opacity=&quot;.6&quot;/>'
+            : '')
+        + '<ellipse cx=&quot;17&quot; cy=&quot;42.6&quot; rx=&quot;5.6&quot; ry=&quot;1.9&quot; fill=&quot;rgba(43,41,37,.35)&quot; filter=&quot;url(#s' + id + ')&quot;/>'
+        + '<path d=&quot;M17 41.5 C17 41.5 29.4 26.9 29.4 16.9 A12.4 12.4 0 1 0 4.6 16.9'
+          + ' C4.6 26.9 17 41.5 17 41.5 Z&quot; fill=&quot;url(#b' + id + ')&quot; stroke=&quot;#FBF8F1&quot;'
+          + ' stroke-width=&quot;1.8&quot; stroke-linejoin=&quot;round&quot;/>'
+        + '<ellipse cx=&quot;12.1&quot; cy=&quot;10.2&quot; rx=&quot;4.0&quot; ry=&quot;2.6&quot; fill=&quot;rgba(255,255,255,.28)&quot;'
+          + ' transform=&quot;rotate(-24 12.1 10.2)&quot;/>'
+        + '<circle cx=&quot;17&quot; cy=&quot;16.9&quot; r=&quot;4.7&quot; fill=&quot;#FBF8F1&quot;/>'
+        + '</svg>';
+      return {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+        scaledSize: new google.maps.Size(W, H),
+        anchor: new google.maps.Point(W / 2, Math.round(H * 41.5 / 46))   /* 先端が座標 */
+      };
+    }
+    /* ===== 地図はGoogle標準の緑のまま。余計な印だけ消してピンを主役に ===== */
+    var MAP_STYLE = [
+      { featureType: 'poi', stylers: [{ visibility: 'off' }] },                 // 施設の細かい印は消す
+      { featureType: 'poi.park', stylers: [{ visibility: 'on' }] },             // 公園の緑は残す
+      { featureType: 'poi.attraction', stylers: [{ visibility: 'on' }] },       // 観光地の名前は残す
+      { featureType: 'transit', stylers: [{ visibility: 'off' }] },             // 乗換の印は消す
+      { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] }
+    ];
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('gmap'), {
+        mapTypeControl: false,        // 「地図」「航空写真」の切替は出さない
+        streetViewControl: false,
+        fullscreenControl: true,
+        clickableIcons: false,        // Google側の施設吹き出しは出さない
+        backgroundColor: '#E8EDE3',
+        styles: MAP_STYLE,
+        gestureHandling: 'cooperative'  // スマホの1本指スクロールを妨げない
+      });
+      info = new google.maps.InfoWindow({ maxWidth: 250 });
+      map.addListener('click', function () { closeCard(); });
+      var b = new google.maps.LatLngBounds();
+      SPOTS.forEach(function (s, i) {
+        var m = new google.maps.Marker({
+          position: { lat: s.a, lng: s.o }, map: map,
+          title: (i + 1) + '. ' + s.n + (s.r ? ' ' + stars(s.r) : ''),
+          icon: pin(i, false),
+          zIndex: 1
+        });
+        m.addListener('click', function () { select(i); });
+        marks[i] = m;
+        b.extend(m.getPosition());
+      });
+      map.fitBounds(b, 40);
+      if (SPOTS.length) select(0, true);   // 全体を見せたまま、1件目を選んだ状態で始める
+    }
+    function sheetOpen(on) {
+      var sh = document.getElementById('sheet');
+      var sc = document.getElementById('scrim');
+      sh.classList.toggle('open', on);
+      document.getElementById('sToggle').setAttribute('aria-expanded', String(on));
+      if (on) {
+        sc.hidden = false;
+        requestAnimationFrame(function () { sc.classList.add('on'); });
+      } else {
+        sc.classList.remove('on');
+        setTimeout(function () { if (!sh.classList.contains('open')) sc.hidden = true; }, 300);
+      }
+      if (on) hideCard();   /* 一覧を開くときはカードを隠す */
+      if (on &amp;&amp; cur >= 0) {
+        var el = document.querySelector('#sheetBody [data-i=&quot;' + cur + '&quot;]');
+        if (el) el.scrollIntoView({ block: 'center' });
+      }
+    }
+    /* カード用の星: 塗り★+白抜き☆ で5点満点 */
+    function starsCard(r) {
+      var s = '';
+      for (var i = 0; i < 5; i++) s += (i < r) ? '\u2605' : '\u2606';
+      return s;
+    }
+    /* 詳細カードの中身: × / 名前 / 星(中央揃え) / 前へ・GoogleMapへ・次へ */
+    function cardHTML(s, i) {
+      var g = 'https://www.google.com/maps/search/?api=1&amp;query=' + s.a + ',' + s.o;
+      return '<div class=&quot;iw&quot;>'
+        + '<button type=&quot;button&quot; class=&quot;x&quot; onclick=&quot;closeCard()&quot; aria-label=&quot;閉じる&quot;>\u2715</button>'
+        + (s.c ? '<span class=&quot;c&quot;>' + s.c + '</span>' : '')
+        + '<span class=&quot;n&quot;>' + s.n + '</span>'
+        + (s.r ? '<span class=&quot;r&quot;>' + starsCard(s.r) + '</span>' : '')
+        + '<div class=&quot;iwnav&quot;>'
+        + '<button type=&quot;button&quot; onclick=&quot;step(-1)&quot; aria-label=&quot;前の場所へ&quot;' + (i <= 0 ? ' disabled' : '') + '>\u2039</button>'
+        + '<a href=&quot;' + g + '&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>GoogleMapへ</a>'
+        + '<button type=&quot;button&quot; onclick=&quot;step(1)&quot; aria-label=&quot;次の場所へ&quot;' + (i >= SPOTS.length - 1 ? ' disabled' : '') + '>\u203A</button>'
+        + '</div></div>';
+    }
+    /* 狭い画面では吹き出しが地図からはみ出すので、下端の固定カードに切り替える */
+    function isNarrow() { return window.matchMedia('(max-width: 760px)').matches; }
+    function hideCard() { document.getElementById('mcard').hidden = true; }
+    function closeCard() { info.close(); hideCard(); }
+    function select(i, noPan) {
+      var s = SPOTS[i], m = marks[i];
+      if (!m) return;
+      cur = i;
+      if (!noPan) {
+        map.panTo(m.getPosition());
+        if (map.getZoom() < 13) map.setZoom(13);
+      }
+      if (!noPan) {
+        if (isNarrow()) {
+          info.close();
+          var mc = document.getElementById('mcard');
+          mc.innerHTML = cardHTML(s, i);
+          mc.hidden = false;
+        } else {
+          hideCard();
+          info.setContent(cardHTML(s, i));
+          info.open(map, m);
+        }
+      }
+      marks.forEach(function (mk, k) { mk.setIcon(pin(k, false)); mk.setZIndex(1); });
+      m.setIcon(pin(i, true));
+      m.setZIndex(2);   // 重なった時も選択中のピンが手前に
+      document.querySelectorAll('[data-i]').forEach(function (el) {
+        el.setAttribute('aria-current', String(+el.getAttribute('data-i') === i));
+      });
+      var row = document.querySelector('.listbody [data-i=&quot;' + i + '&quot;]');
+      if (row) {   // 一覧の見えている範囲に無ければ、その行まで滑らせる
+        var box = document.querySelector('.listbody');
+        var rt = row.offsetTop, rb = rt + row.offsetHeight;
+        if (rt < box.scrollTop + 28 || rb > box.scrollTop + box.clientHeight)
+          box.scrollTo({ top: rt - box.clientHeight / 2 + row.offsetHeight / 2, behavior: 'smooth' });
+      }
+      var label = '<span class=&quot;cnt&quot;>' + (i + 1) + ' / ' + SPOTS.length + '</span>' + s.n
+        + (s.r ? ' <span class=&quot;st&quot;>' + stars5(s.r) + '</span>' : '');
+      document.getElementById('now').innerHTML = label;
+      document.getElementById('sTx').innerHTML = label;
+      ['prev','sPrev'].forEach(function (id) { document.getElementById(id).disabled = (i <= 0); });
+      ['next','sNext'].forEach(function (id) { document.getElementById(id).disabled = (i >= SPOTS.length - 1); });
+      /* 記事ページ側の『◯◯へ』リンクに、今選んでいる場所を伝える */
+      try {
+        if (window.parent &amp;&amp; window.parent !== window)
+          window.parent.postMessage({ quinaryMapSpot: true, name: s.n,
+            url: 'https://www.google.com/maps/search/?api=1&amp;query=' + s.a + ',' + s.o }, '*');
+      } catch (e) {}
+    }
+    function step(d) {
+      if (cur < 0) { select(d > 0 ? 0 : SPOTS.length - 1); return; }
+      if (SPOTS[cur + d]) select(cur + d);
+    }
+    /* 一覧(PC/スマホ両方)の星をSPOTSから自動で流し込む。HTML側の書き換え忘れを防ぐ */
+    document.querySelectorAll('[data-i]').forEach(function (el) {
+      var s = SPOTS[+el.getAttribute('data-i')];
+      var st = el.querySelector('.st');
+      if (st &amp;&amp; s) st.innerHTML = s.r ? stars5(s.r) : '';
+    });
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-i]');
+      if (!b) return;
+      select(+b.getAttribute('data-i'));
+      if (b.closest('.sheetbody')) sheetOpen(false);   // 一覧から選んだら閉じて地図へ
+    });
+    document.getElementById('scrim').addEventListener('click', function () { sheetOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') sheetOpen(false);
+    });
+    document.getElementById('sToggle').addEventListener('click', function () {
+      sheetOpen(!document.getElementById('sheet').classList.contains('open'));
+    });
+    document.getElementById('fitAll').addEventListener('click', function () {
+      closeCard();
+      var b = new google.maps.LatLngBounds();
+      marks.forEach(function (m) { b.extend(m.getPosition()); });
+      map.fitBounds(b, 40);
+    });
+    document.getElementById('prev').addEventListener('click', function () { step(-1); });
+    document.getElementById('next').addEventListener('click', function () { step(1); });
+    var lastScale = 0;
+    window.addEventListener('resize', function () {
+      var sc = pinScale();
+      if (sc === lastScale) return;
+      lastScale = sc;
+      marks.forEach(function (mk, k) { mk.setIcon(pin(k, k === cur)); });
+    });
+    document.getElementById('sPrev').addEventListener('click', function () { step(-1); });
+    document.getElementById('sNext').addEventListener('click', function () { step(1); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    });
+  </script>
+
+  <!-- ============================================================
+       Googleマップの利用キー
+       下の行の  key=  のすぐ後ろ(&amp;language=ja の手前)がキーです。
+       手元で確認するときは、そこをテスト用キーに差し替えてください。
+       サーバーに上げるときは、本番用キーに戻します。
+       ============================================================ -->
+  <script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyCPG8oFwOwrk9dFc7g-8ezQ-BDBjqw3EXI&amp;language=ja&amp;region=JP&amp;callback=initMap&quot; async defer></script>
+</body>
+</html>
+" loading="lazy"></iframe>
       </div>
       <div class="maprow">
         <span class="mapnote">
-          <p class="maplink"><a href="http://www.thequinary.com/map/cambodia.html">大きな地図</a>を表示</p>
-        </span>
+                  </span>
         <a class="spotlink" id="spotLink" href="#" target="_blank" rel="noopener" hidden></a>
       </div>
     </div>
