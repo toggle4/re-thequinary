@@ -1,651 +1,1340 @@
 
 <!DOCTYPE html>
+<!-- quinary-tidied v1 -->
+<!-- 加工済みのファイルです。編集はV4の元ファイルで行い、もう一度この工程に通してください -->
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quinary - 第五紀 - イスラエル(デザイン試作)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-<style>
-/* =========================================================
-   テーマ変数(静7:動3 の心臓部)
-   ここを差し替えるだけで「静モード」「動モード」が切り替わる。
-   四国・温泉・さくら → 静 / 世界へ → 動
-   ========================================================= */
-:root{
-  /* --- 静の基調(全モード共通の土台 = 7割) --- */
-  --kinari:   #F4EFE4;  /* 生成り:ページ背景 */
-  --washi:    #FBF8F1;  /* 和紙白:カード面 */
-  --sumi:     #2B2925;  /* 墨:本文 */
-  --rikyu:    #7A7462;  /* 利休鼠:補助文字(既存サイト#80795aの継承) */
-  --usuzumi:  #B9B2A0;  /* 薄墨:罫線 */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quinary - 第五紀 - カンボジア</title>
 
-  --font-display:"Shippori Mincho", serif;
-  --font-body:"Noto Serif JP", serif;
-  --font-utility:"Zen Kaku Gothic New", sans-serif;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap">
 
-/* --- 動モード(世界へ):差し色=群青、動きを解禁(3割) --- */
-body[data-theme="dou"]{
-  --accent:      #27427A;  /* 群青 */
-  --accent-deep: #1B2F58;
-  --accent-soft: #E7EBF3;
-  --motion-dur:  .8s;      /* スクロール出現の速さ */
-  --motion-rise: 24px;     /* 出現時に立ち上がる距離 */
-  --hero-h: 74vh;
-}
-
-/* --- 日本カテゴリ:差し色は群青と同格の彩度を保ち、色相だけタグで切り分ける ---
-   (静かすぎた旧・静モードを廃止。動きは世界よりひと呼吸ゆるやかに) */
-body[data-theme="henro"]{   /* お遍路:松葉色 */
-  --accent:      #4C6444;
-  --accent-deep: #3A4F34;
-  --accent-soft: #E8EDE4;
-  --motion-dur:  1.2s;
-  --motion-rise: 14px;
-  --hero-h: 64vh;
-}
-body[data-theme="onsen"]{   /* 温泉:青碧(湯けむりの青緑) */
-  --accent:      #2E6E6A;
-  --accent-deep: #235550;
-  --accent-soft: #E3EFED;
-  --motion-dur:  1.2s;
-  --motion-rise: 14px;
-  --hero-h: 64vh;
-}
-body[data-theme="sakura"]{  /* さくら:薄紅の群 */
-  --accent:      #C0637C;
-  --accent-deep: #9E4A62;
-  --accent-soft: #F6E7EC;
-  --motion-dur:  1.2s;
-  --motion-rise: 14px;
-  --hero-h: 64vh;
-}
-body[data-theme="matsuri"]{ /* 風景、祭り:紅緋の淡群 */
-  --accent:      #B5493C;
-  --accent-deep: #93392E;
-  --accent-soft: #F4E6E2;
-  --motion-dur:  1.2s;
-  --motion-rise: 14px;
-  --hero-h: 64vh;
-}
-
-*{ margin:0; padding:0; box-sizing:border-box; }
-
-body{
-  background:var(--kinari);
-  color:var(--sumi);
-  font-family:var(--font-body);
-  font-weight:400;
-  line-height:2.0;               /* 静:行間を広く、間をつくる */
-  letter-spacing:.04em;
-  font-size:15px;
-  transition:background .6s ease;
-}
-
-/* =========================
-   グローバルナビ
-   ========================= */
-header.site{
-  position:sticky; top:0; z-index:50;
-  background:color-mix(in srgb, var(--kinari) 88%, transparent);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--usuzumi);
-}
-.site-inner{
-  max-width:1080px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 24px;
-}
-.brand{
-  font-family:var(--font-display);
-  font-size:17px; letter-spacing:.18em; font-weight:600;
-  color:var(--sumi); text-decoration:none;
-}
-.brand small{
-  font-family:var(--font-utility); font-weight:400;
-  font-size:10px; letter-spacing:.3em; color:var(--rikyu);
-  display:block; margin-top:-2px;
-}
-nav.global ul{ list-style:none; display:flex; gap:26px; }
-nav.global a{
-  font-family:var(--font-utility); font-size:12.5px; letter-spacing:.14em;
-  color:var(--rikyu); text-decoration:none; padding:6px 0;
-  border-bottom:1px solid transparent;
-  transition:color .3s, border-color .3s;
-}
-nav.global a:hover, nav.global a:focus-visible{ color:var(--accent); border-color:var(--accent); outline:none; }
-nav.global a[aria-current="page"]{ color:var(--accent); border-color:var(--accent); }
-.nav-toggle{ display:none; }
-
-/* =========================
-   ヒーロー:縦書きの表題(署名的要素 その1)
-   ========================= */
-.hero{
-  position:relative;
-  height:var(--hero-h);
-  min-height:420px;
-  display:flex; align-items:stretch;
-  overflow:hidden;
-  transition:height .6s ease;
-}
-.hero-photo{
-  position:absolute; inset:0;
-  background:
-    linear-gradient(160deg, rgba(43,41,37,.18), rgba(43,41,37,.46)),
-    repeating-linear-gradient(115deg, #C9BFA9 0 90px, #BBB29C 90px 180px, #D3CAB4 180px 300px);
-  /* 実写真に差し替える枠。旧市街とオリーブ山を望む1枚を想定 */
-}
-.hero-inner{
-  position:relative;
-  max-width:1080px; width:100%;
-  margin:0 auto; padding:0 24px;
-  display:flex; align-items:flex-end; justify-content:space-between;
-}
-.hero-title{
-  writing-mode:vertical-rl;     /* 縦書き:和の静けさをページの第一声に */
-  font-family:var(--font-display);
-  font-size:clamp(40px, 6vw, 68px);
-  font-weight:500;
-  letter-spacing:.28em;
-  color:#FBF8F1;
-  text-shadow:0 1px 24px rgba(27,38,58,.35);
-  padding:48px 0 56px;
-  align-self:flex-start;
-  white-space:nowrap;           /* 10文字以下の表題は必ず一行(縦一列)を保つ */
-  font-size:min(clamp(40px, 6vw, 68px), calc((var(--hero-h) - 120px) / 11)); /* 画面が低い時は字を縮めて改行を防ぐ */
-}
-.hero-meta a{
-  color:inherit;
-  text-decoration:underline;
-  text-underline-offset:4px;
-  text-decoration-color:rgba(251,248,241,.6);
-}
-.hero-meta a:hover{ text-decoration-color:#FBF8F1; }
-.hero-meta{
-  color:#F1EDE2;
-  font-family:var(--font-utility);
-  font-size:12px; letter-spacing:.22em;
-  padding-bottom:42px;
-  text-align:right;
-}
-.hero-meta .region{
-  display:inline-block;
-  border:1px solid rgba(251,248,241,.55);
-  padding:4px 14px; margin-bottom:10px;
-}
-.hero-meta .period{ display:block; opacity:.9; }
-
-/* =========================
-   導入:静かに始まる(温度=静)
-   ========================= */
-.intro{
-  max-width:640px; margin:0 auto;
-  padding:84px 24px 64px;
-  text-align:center;
-}
-.intro p{ margin-bottom:1.4em; color:var(--sumi); }
-.intro .note{
-  font-size:13px; color:var(--rikyu);
-  font-family:var(--font-utility); letter-spacing:.1em;
-}
-.intro .note a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft); }
-.intro .note a:hover{ border-color:var(--accent); }
-
-/* =========================
-   地図(既存の /map/israel.html を埋め込む枠)
-   ========================= */
-.map-block{
-  max-width:880px; margin:0 auto 96px; padding:0 24px;
-}
-#map{
-  width:100%; aspect-ratio:16/9;
-  border:1px solid var(--usuzumi);
-  filter:saturate(.7) sepia(.06);   /* 地図の彩度を落とし、生成りの紙面に馴染ませる */
-  background:#EDE8DA;
-}
-/* 訪問地ピン:旅の道線の結節点と同じ菱形。差し色に自動追随 */
-.map-pin{
-  width:13px; height:13px;
-  background:var(--accent);
-  border:2px solid #FBF8F1;
-  transform:rotate(45deg);
-  box-shadow:0 0 0 1px var(--accent);
-}
-.leaflet-popup-content-wrapper{
-  border-radius:0;
-  background:var(--washi);
-  color:var(--sumi);
-  font-family:var(--font-utility);
-  letter-spacing:.12em;
-  border:1px solid var(--usuzumi);
-  box-shadow:none;
-}
-.leaflet-popup-tip{ background:var(--washi); box-shadow:none; border:1px solid var(--usuzumi); }
-.map-block .caption{
-  text-align:right; font-family:var(--font-utility);
-  font-size:11.5px; color:var(--rikyu); margin-top:8px; letter-spacing:.12em;
-}
-
-/* =========================
-   旅の道線(署名的要素 その2)
-   都市・スポットを群青の一本の線がつなぐ。
-   巡礼路のように、読むことが「歩くこと」になる。
-   ========================= */
-.journey{
-  max-width:880px; margin:0 auto; padding:0 24px 80px;
-  position:relative;
-}
-.journey::before{
-  content:"";
-  position:absolute; top:0; bottom:0; left:calc(24px + 11px);
-  width:1px;
-  background:linear-gradient(var(--usuzumi), var(--accent) 12%, var(--accent) 88%, var(--usuzumi));
-  opacity:.7;
-}
-
-/* --- 都市(h2相当) --- */
-.city{
-  position:relative;
-  padding:0 0 24px 56px;
-  margin-top:72px;
-}
-.city::before{                      /* 道線上の結節点 */
-  content:"";
-  position:absolute; left:6px; top:14px;
-  width:11px; height:11px;
-  background:var(--accent);
-  transform:rotate(45deg);          /* 菱形:地図記号の趣 */
-}
-.city h2{
-  font-family:var(--font-display);
-  font-size:30px; font-weight:500; letter-spacing:.14em;
-  line-height:1.5; color:var(--sumi);
-}
-.city .city-en{
-  font-family:var(--font-utility); font-size:11px;
-  letter-spacing:.34em; color:var(--accent);
-  display:block; margin-bottom:6px;
-}
-.city .city-lede{
-  max-width:620px; margin-top:18px;
-  color:var(--sumi); font-size:14.5px;
-}
-
-/* --- スポット(h3相当) --- */
-.spot{
-  position:relative;
-  margin:56px 0 0 56px;
-  padding:36px 36px 40px;
-  background:var(--washi);
-  border:1px solid color-mix(in srgb, var(--usuzumi) 60%, transparent);
-  /* 静:影は使わず、紙の重なりだけで面をつくる */
-}
-.spot::before{                      /* 道線からスポットへの小さな渡り */
-  content:"";
-  position:absolute; left:-45px; top:44px;
-  width:32px; height:1px; background:var(--accent); opacity:.55;
-}
-.spot-head{
-  display:flex; align-items:baseline; justify-content:space-between;
-  gap:16px; flex-wrap:wrap;
-  border-bottom:1px solid var(--usuzumi);
-  padding-bottom:14px; margin-bottom:20px;
-}
-.spot-head h3{
-  font-family:var(--font-display);
-  font-size:20px; font-weight:600; letter-spacing:.1em;
-}
-/* ☆評価:本人の独自レーティングをそのまま意匠に */
-.rating{
-  font-family:var(--font-utility); font-size:11px;
-  letter-spacing:.28em; color:var(--accent);
-  border:1px solid var(--accent-soft);
-  background:var(--accent-soft);
-  padding:3px 12px 3px 14px;
-  white-space:nowrap;
-}
-.spot p{ font-size:14.5px; margin-bottom:1.2em; }
-.spot p:last-of-type{ margin-bottom:0; }
-
-/* --- 写真:テーブル組を卒業し、余白の中に並べる --- */
-.photos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
-  gap:14px;
-  margin-top:26px;
-}
-.ph{
-  background:
-    linear-gradient(150deg, #CDC5B1, #BEB6A2 55%, #D6CEBB);
-  border:1px solid var(--usuzumi);
-  position:relative;
-}
-.ph::after{
-  content:attr(data-label);
-  position:absolute; inset:auto 0 0 0;
-  padding:4px 8px;
-  font-family:var(--font-utility); font-size:10px;
-  letter-spacing:.14em; color:#FBF8F1;
-  background:linear-gradient(transparent, rgba(43,41,37,.42));
-}
-.ph.land{ aspect-ratio:4/3; }
-.ph.port{ aspect-ratio:3/4; }
-
-/* =========================
-   スクロール出現(動の3割。静モードではほぼ静止)
-   ========================= */
-.reveal{
-  opacity:0;
-  transform:translateY(var(--motion-rise));
-  transition:opacity var(--motion-dur) ease, transform var(--motion-dur) ease;
-}
-.reveal.is-in{ opacity:1; transform:none; }
-@media (prefers-reduced-motion: reduce){
-  .reveal{ opacity:1; transform:none; transition:none; }
-}
-
-/* =========================
-   次の旅へ(回遊導線)
-   ========================= */
-.next-trip{
-  max-width:880px; margin:0 auto 110px; padding:0 24px;
-  display:grid; grid-template-columns:1fr 1fr; gap:14px;
-}
-.next-trip a{
-  display:block; padding:26px 28px;
-  background:var(--washi);
-  border:1px solid var(--usuzumi);
-  text-decoration:none; color:var(--sumi);
-  transition:border-color .3s, background .3s;
-}
-.next-trip a:hover{ border-color:var(--accent); background:var(--accent-soft); }
-.next-trip .dir{
-  font-family:var(--font-utility); font-size:10.5px;
-  letter-spacing:.3em; color:var(--accent); display:block; margin-bottom:6px;
-}
-.next-trip .name{
-  font-family:var(--font-display); font-size:18px; letter-spacing:.12em;
-}
-.next-trip a.next{ text-align:right; }
-
-/* =========================
-   フッター
-   ========================= */
-footer.site{
-  border-top:1px solid var(--usuzumi);
-  padding:34px 24px 44px;
-  text-align:center;
-  font-family:var(--font-utility);
-  font-size:11px; letter-spacing:.2em; color:var(--rikyu);
-}
-
-/* =========================
-   静/動 切替トグル(デモ用UI)
-   実運用ではタグにより自動で切り替わる
-   ========================= */
-.theme-demo{
-  position:fixed; right:18px; bottom:18px; z-index:60;
-  display:flex; align-items:center; gap:0;
-  border:1px solid var(--usuzumi);
-  background:var(--washi);
-  font-family:var(--font-utility);
-}
-.theme-demo button{
-  appearance:none; border:0; background:transparent;
-  padding:9px 16px; cursor:pointer;
-  font-family:inherit; font-size:12px; letter-spacing:.2em;
-  color:var(--rikyu);
-}
-.theme-demo button[aria-pressed="true"]{
-  background:var(--accent); color:#FBF8F1;
-}
-.theme-demo .lbl{
-  padding:0 10px 0 14px; font-size:10px; letter-spacing:.18em; color:var(--rikyu);
-}
-
-/* =========================
-   レスポンシブ(旅先のスマホ閲覧を最優先)
-   ========================= */
-@media (max-width: 760px){
-  nav.global ul{ display:none; }
-  nav.global.open ul{
-    display:flex; flex-direction:column; gap:0;
-    position:absolute; left:0; right:0; top:100%;
-    background:var(--kinari); border-bottom:1px solid var(--usuzumi);
-    padding:8px 24px 16px;
-  }
-  nav.global.open a{ display:block; padding:12px 0; }
-  .nav-toggle{
-    display:block; appearance:none; background:none;
-    border:1px solid var(--usuzumi); padding:7px 12px;
-    font-family:var(--font-utility); font-size:11px; letter-spacing:.2em;
-    color:var(--sumi); cursor:pointer;
-  }
-  .hero-title{ font-size:38px; padding:28px 0; }
-  .hero-meta{ padding-bottom:28px; }
-  .intro{ padding:56px 24px 40px; text-align:left; }
-  .journey::before{ left:calc(24px + 5px); }
-  .city{ padding-left:32px; margin-top:56px; }
-  .city::before{ left:0; }
-  .spot{ margin-left:0; padding:24px 20px 28px; }
-  .spot::before{ display:none; }
-  .next-trip{ grid-template-columns:1fr; }
-}
-</style>
+  <style>
+    :root {
+      --kinari:#F4EFE4;
+      --washi:#FBF8F1;
+      --sumi:#2B2925;
+      --rikyu:#7A7462;
+      --usuzumi:#B9B2A0;
+      --accent:#27427a;
+      --accent-soft:#27427a1A;
+      --fd:'Shippori Mincho','Yu Mincho','游明朝',serif;
+      --fb:'Shippori Mincho','Yu Mincho','游明朝',serif;
+      --fu:'Zen Kaku Gothic New',sans-serif;
+      --pagew:900px
+    }
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box
+    }
+    html {
+      -webkit-text-size-adjust:100%
+    }
+    body {
+      background:var(--kinari);
+      color:var(--sumi);
+      font-family:var(--fb);
+      font-size:15.5px;
+      line-height:2.05;
+      letter-spacing:.04em
+    }
+    a {
+      color:var(--accent)
+    }
+    :focus-visible {
+      outline:2px solid var(--accent);
+      outline-offset:2px
+    }
+    img {
+      display:block;
+      max-width:100%
+    }
+    .site-head {
+      background:var(--washi);
+      border-bottom:0
+    }
+    .hd {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:14px 20px 10px;
+      display:flex;
+      align-items:baseline;
+      gap:14px;
+      flex-wrap:wrap
+    }
+    .brand {
+      font-family:var(--fd);
+      font-style:italic;
+      font-weight:500;
+      font-size:22px;
+      letter-spacing:.06em;
+      text-decoration:none;
+      color:var(--sumi)
+    }
+    .brand small {
+      font-style:normal;
+      font-family:var(--fu);
+      font-size:10px;
+      letter-spacing:.3em;
+      color:var(--rikyu);
+      margin-left:10px
+    }
+    .menu-btn {
+      margin-left:auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:32px;
+      flex:none;
+      background:none;
+      border:1px solid var(--usuzumi);
+      cursor:pointer
+    }
+    .menu-btn:hover {
+      border-color:var(--accent)
+    }
+    .menu-btn .bar {
+      display:inline-block;
+      width:16px;
+      height:11px;
+      position:relative
+    }
+    .menu-btn .bar::before,.menu-btn .bar::after,.menu-btn .bar i {
+      content:'';
+      position:absolute;
+      left:0;
+      right:0;
+      height:1.6px;
+      background:var(--sumi)
+    }
+    .menu-btn .bar::before {
+      top:0
+    }
+    .menu-btn .bar i {
+      top:4.7px
+    }
+    .menu-btn .bar::after {
+      top:9.4px
+    }
+    .crumbwrap {
+      background:none
+    }
+    .crumb {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:2px 20px 8px;
+      font-family:var(--fu);
+      font-size:10.5px;
+      letter-spacing:.1em;
+      color:var(--rikyu);
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center
+    }
+    .crumb a {
+      color:var(--rikyu);
+      text-decoration:none
+    }
+    .crumb a:hover {
+      color:var(--accent)
+    }
+    .crumb em {
+      font-style:normal;
+      color:var(--accent)
+    }
+    .wrap {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:34px 20px 70px
+    }
+    .hero {
+      margin-bottom:26px
+    }
+    .eyebrow {
+      font-family:var(--fu);
+      font-size:10px;
+      letter-spacing:.32em;
+      color:var(--accent);
+      margin-bottom:10px
+    }
+    h1 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:32px;
+      letter-spacing:.1em;
+      line-height:1.6;
+      margin-bottom:14px
+    }
+    .hero p {
+      font-size:14.5px
+    }
+    .map {
+      margin:26px 0 34px
+    }
+    .mapfrm {
+      position:relative;
+      width:100%;
+      aspect-ratio:5/3;
+      border:1px solid var(--usuzumi);
+      background:var(--washi)
+    }
+    @media(max-width:640px) {
+      .mapfrm {
+        aspect-ratio:1/1
+      }
+    }
+    .mapfrm iframe {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0
+    }
+    .maplink {
+      margin-top:8px;
+      font-family:var(--fu);
+      font-size:11.5px;
+      letter-spacing:.08em
+    }
+    .maprow {
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap
+    }
+    .spotlink {
+      margin-top:8px;
+      font-family:var(--fu);
+      font-size:11.5px;
+      letter-spacing:.08em;
+      white-space:nowrap;
+      color:var(--accent);
+      text-decoration:none;
+      border-bottom:1px solid transparent
+    }
+    .spotlink:hover {
+      border-bottom-color:var(--accent)
+    }
+    .spotlink[hidden] {
+      display:none
+    }
+    .spots {
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:26px
+    }
+    @media(min-width:700px) {
+      .spots {
+        padding-left:26px
+      }
+      .spots::before {
+        content:'';
+        position:absolute;
+        left:6px;
+        top:14px;
+        bottom:14px;
+        width:1px;
+        background:var(--usuzumi)
+      }
+      .spot::before {
+        content:'';
+        position:absolute;
+        left:-23px;
+        top:30px;
+        width:7px;
+        height:7px;
+        background:var(--accent);
+        transform:rotate(45deg)
+      }
+    }
+    .spot {
+      position:relative;
+      background:var(--washi);
+      border:1px solid var(--usuzumi);
+      padding:24px 26px 26px
+    }
+    .spot h2 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:20px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:8px
+    }
+    .spot p {
+      margin-bottom:6px
+    }
+    .rank {
+      display:inline-block;
+      vertical-align:2px;
+      margin-left:12px;
+      padding:2px 10px;
+      font-family:var(--fu);
+      font-size:11px;
+      letter-spacing:.22em;
+      color:var(--accent);
+      background:var(--accent-soft);
+      border:1px solid var(--accent);
+      white-space:nowrap
+    }
+    .rank.s {
+      font-size:10px;
+      padding:1px 8px;
+      margin-left:10px;
+      vertical-align:1px
+    }
+    .sub {
+      border-top:1px dashed var(--usuzumi);
+      margin-top:20px;
+      padding-top:18px
+    }
+    .sub h3 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:16.5px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:6px
+    }
+    .sub h4 {
+      font-family:var(--fd);
+      font-weight:500;
+      font-size:14px;
+      letter-spacing:.1em;
+      line-height:1.7;
+      margin-bottom:6px
+    }
+    .ph {
+      display:grid;
+      gap:10px;
+      margin:14px 0 4px
+    }
+    .ph.one {
+      grid-template-columns:1fr!important
+    }
+    .ph.fill2>.pht:last-child:nth-child(odd) {
+      grid-column:1/-1
+    }
+    .tblwrap {
+      overflow-x:auto;
+      margin:14px 0 4px
+    }
+    .tblwrap table {
+      border-collapse:collapse;
+      font-size:.95em;
+      line-height:1.8
+    }
+    .tblwrap td,.tblwrap th {
+      border:1px solid var(--usuzumi);
+      padding:6px 12px;
+      background:var(--washi)
+    }
+    .rawwrap {
+      margin:10px 0
+    }
+    .pht {
+      display:block;
+      border:1px solid var(--usuzumi);
+      background:var(--kinari)
+    }
+    .pht img {
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover
+    }
+    .pht:hover {
+      border-color:var(--accent)
+    }
+    @media(max-width:640px) {
+      .ph:not(.one) {
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:8px
+      }
+      .ph:not(.one)>.pht:last-child:nth-child(odd) {
+        grid-column:1/-1
+      }
+    }
+    .spot {
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .5s ease,transform .5s ease
+    }
+    .spot.vis {
+      opacity:1;
+      transform:none
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .spot {
+        opacity:1;
+        transform:none;
+        transition:none
+      }
+    }
+    footer {
+      border-top:1px solid var(--usuzumi);
+      background:var(--washi)
+    }
+    footer p {
+      max-width:var(--pagew);
+      margin:0 auto;
+      padding:16px 20px;
+      font-family:var(--fu);
+      font-size:10.5px;
+      letter-spacing:.14em;
+      color:var(--rikyu);
+      text-align:center
+    }
+    .hero-photo {
+      position:relative;
+      display:flex;
+      min-height:340px;
+      margin-bottom:22px;
+      border:1px solid var(--usuzumi);
+      overflow:hidden
+    }
+    .hero-bg {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover
+    }
+    .hero-shade {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(20,19,17,.12),rgba(20,19,17,.55))
+    }
+    .hero-inner {
+      position:relative;
+      width:100%;
+      padding:26px 28px;
+      color:#FBF8F1
+    }
+    .hero-photo h1 {
+      color:#FBF8F1;
+      text-shadow:0 1px 3px rgba(20,19,17,.45);
+      margin-bottom:0
+    }
+    .hero-photo .eyebrow {
+      color:rgba(251,248,241,.85)
+    }
+    .pos-bl {
+      align-items:flex-end
+    }
+    .pos-tl {
+      align-items:flex-start
+    }
+    .pos-c {
+      align-items:center
+    }
+    .pos-c .hero-inner {
+      text-align:center
+    }
+    .lede {
+      margin-bottom:26px
+    }
+    .lede p {
+      font-size:14.5px
+    }
+    @media(max-width:640px) {
+      .hero-photo {
+        min-height:230px;
+        margin:-34px -20px 22px;
+        border-left:0;
+        border-right:0;
+        border-top:0
+      }
+      .hero-inner {
+        padding:18px 20px
+      }
+    }
+    .mapfrm.sec {
+      margin:14px 0 4px
+    }
+    .totop {
+      position:fixed;
+      right:14px;
+      bottom:14px;
+      width:44px;
+      height:44px;
+      z-index:35;
+      border:1px solid var(--usuzumi);
+      background:var(--washi);
+      color:var(--sumi);
+      font-family:var(--fu);
+      font-size:16px;
+      cursor:pointer;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s
+    }
+    .totop.show {
+      opacity:.92;
+      pointer-events:auto
+    }
+    .site-head {
+      position:sticky;
+      top:0;
+      z-index:31
+    }
+    .brand small {
+      transition:opacity .25s
+    }
+    body.scrolled .brand small {
+      opacity:0
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .totop,.brand small {
+        transition:none
+      }
+    }
+    .tree {
+      list-style:none;
+      font-family:var(--fu);
+      font-size:13px;
+      letter-spacing:.05em
+    }
+    .tree ul {
+      list-style:none;
+      display:none;
+      padding-left:22px;
+      overflow:hidden
+    }
+    .tree li.br.open>ul {
+      display:block
+    }
+    .tree ul.anim {
+      transition:height .24s cubic-bezier(.4,0,.2,1)
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .tree ul.anim {
+        transition:none
+      }
+    }
+    .tree .row {
+      display:flex;
+      align-items:center;
+      gap:4px;
+      padding:3.5px 0
+    }
+    .tree>li {
+      margin:3px 0
+    }
+    .tree>li>.row {
+      background:rgba(43,41,37,.035);
+      padding:8px 10px
+    }
+    .tree>li.open>.row {
+      background:var(--accent-soft)
+    }
+    .tree ul .row {
+      padding:5.5px 0
+    }
+    .tree .lnk {
+      flex:1;
+      color:var(--sumi);
+      text-decoration:none;
+      line-height:1.55
+    }
+    .tree .lnk:hover {
+      color:var(--accent)
+    }
+    .tree .lnk.cur {
+      color:#fff;
+      font-weight:700;
+      background:var(--accent);
+      padding:3px 10px
+    }
+    .tree .tw {
+      width:24px;
+      height:24px;
+      flex:none;
+      background:none;
+      border:0;
+      cursor:pointer;
+      position:relative
+    }
+    .tree .tw::before {
+      content:'';
+      position:absolute;
+      left:9px;
+      top:7px;
+      border:5px solid transparent;
+      border-left-color:var(--rikyu);
+      transition:transform .15s
+    }
+    .tree li.open>.row .tw::before {
+      transform:rotate(90deg)
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .tree .tw::before {
+        transition:none
+      }
+    }
+    .cdot {
+      width:4px;
+      height:18px;
+      display:inline-block;
+      margin-right:10px;
+      flex:none
+    }
+    @media(max-width:640px) {
+      .drawer {
+        width:min(88vw,320px);
+        scrollbar-width:none
+      }
+      .drawer::-webkit-scrollbar {
+        display:none
+      }
+      .tree {
+        font-size:15px
+      }
+      .tree>li>.row {
+        padding:10px 10px
+      }
+      .tree ul .row {
+        padding:7px 0
+      }
+      .tree .tw {
+        width:30px;
+        height:30px
+      }
+      .tree .tw::before {
+        left:12px;
+        top:10px
+      }
+    }
+    .scrim {
+      position:fixed;
+      inset:0;
+      background:rgba(43,41,37,.35);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s;
+      z-index:40
+    }
+    .drawer {
+      position:fixed;
+      top:0;
+      bottom:0;
+      left:0;
+      width:min(82vw,300px);
+      z-index:41;
+      background:var(--washi);
+      border-right:1px solid var(--usuzumi);
+      transform:translateX(-102%);
+      transition:transform .22s;
+      overflow-y:auto;
+      padding:18px 16px 30px
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .drawer,.scrim {
+        transition:none
+      }
+    }
+    body.nav-open .drawer {
+      transform:none
+    }
+    body.nav-open .scrim {
+      opacity:1;
+      pointer-events:auto
+    }
+    .drawer .dh {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px
+    }
+    .drawer .dh b {
+      font-family:var(--fu);
+      font-size:11px;
+      letter-spacing:.28em;
+      color:var(--rikyu);
+      font-weight:500
+    }
+    .dclose {
+      background:none;
+      border:1px solid var(--usuzumi);
+      width:30px;
+      height:30px;
+      cursor:pointer;
+      font-size:14px;
+      color:var(--sumi);
+      line-height:1
+    }
+    .lb {
+      position:fixed;
+      inset:0;
+      background:rgba(20,19,17,.88);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      cursor:zoom-out;
+      padding:20px
+    }
+    .lb.show {
+      display:flex
+    }
+    .lb img {
+      max-width:94vw;
+      max-height:88vh;
+      border:1px solid var(--usuzumi);
+      background:#000
+    }
+  </style>
+  <noscript>
+    <style>.spot{opacity:1;transform:none}</style>
+  </noscript>
 </head>
-<body data-theme="dou">
 
-<!-- グローバルナビ:全ページ共通の骨格。システムが自動で組み込む部分 -->
-<header class="site">
-  <div class="site-inner">
-    <a class="brand" href="#">Quinary — 第五紀<small>SINCE 2012</small></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="gnav" onclick="const n=document.getElementById('gnav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'));">メニュー</button>
-    <nav class="global" id="gnav" aria-label="サイト内メニュー">
-      <ul>
-        <li><a href="#">トップ</a></li>
-        <li><a href="#" aria-current="page">世界へ</a></li>
-        <li><a href="#">温泉</a></li>
-        <li><a href="#">さくら</a></li>
-        <li><a href="#">お遍路</a></li>
-        <li><a href="#">風景、祭り</a></li>
-        <li><a href="#">ブログ</a></li>
-      </ul>
+<body>
+
+  <!-- 頭部:サイト名・メニューボタン・現在地 -->
+  <header class="site-head">
+    <div class="hd">
+      <a class="brand" href="index.html">Quinary<small>第五紀 — SINCE 2012</small></a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="メニューをひらく">
+        <span class="bar"><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 現在地(帯なし・文字だけ) -->
+  <div class="crumbwrap">
+    <nav class="crumb" aria-label="現在地">
+      <a href="index.html">トップ</a>
+      <span>〉</span>
+      <a href="world_top.html">世界へ</a>
+      <span>〉</span>
+      <a href="asia_top.html">アジア</a>
+      <span>〉</span>
+      <em>カンボジア</em>
     </nav>
   </div>
-</header>
 
-<!-- ヒーロー:縦書きの国名。静けさの中に、旅の予感 -->
-<section class="hero">
-  <div class="hero-photo" role="img" aria-label="エルサレム旧市街を望む写真(実写真に差し替え)"></div>
-  <div class="hero-inner">
-    <h1 class="hero-title">イスラエル</h1>
-    <p class="hero-meta">
-      <span class="region">中東 — MIDDLE EAST</span>
-      <span class="period">2013年11月 / <a href="jordan.html">ヨルダン</a>とともに</span>
-    </p>
+  <!-- 本文:V4で作った内容をそのまま移しています(文章の変更はありません) -->
+  <main class="wrap">
+
+    <div class="hero hero-photo pos-bl">
+      <img class="hero-bg" src="dscf5319_5_lb.jpg" alt="">
+      <div class="hero-shade"></div>
+      <div class="hero-inner">
+        <h1>カンボジア</h1>
+      </div>
+    </div>
+    <div class="lede">
+      <p>カンボジア訪問は2009年</p>
+      <p>子供の頃から永らくあこがれていたアンコールワットについに来ました</p>
+      <p>広範囲かつ高密度に遺跡があり、世界有数の遺跡集積地</p>
+      <p>遺跡といってもエジプトやギリシャのような古代のものではないが、仏教、ヒンドゥー教が折り重なる独特の複雑さがある</p>
+    </div>
+
+    <!-- 地図:別途アップロードした地図ファイルを読み込みます -->
+    <div class="map">
+      <div class="mapfrm">
+        <iframe title="地図" src="https://www.thequinary.com/map/cambodia.html" loading="lazy"></iframe>
+      </div>
+      <div class="maprow">
+        <span class="mapnote">
+          <p class="maplink"><a href="http://www.thequinary.com/map/cambodia.html">大きな地図</a>を表示</p>
+        </span>
+        <a class="spotlink" id="spotLink" href="#" target="_blank" rel="noopener" hidden></a>
+      </div>
+    </div>
+
+    <div class="spots">
+      <section class="spot">
+        <h2>アンコールワット遺跡群</h2>
+
+        <div class="sub">
+          <h3>アンコール・ワット<span class="rank s" aria-label="評価 星4">☆☆☆☆</span></h3>
+          <p>カンボジアの代名詞かつ東南アジア最大級の石造の大寺院</p>
+          <p>堀を巡らせた広大な敷地に三層の回廊と伽藍がそびえる壮大な造り</p>
+          <p>柔らかい砂岩造りの建造物は傷みも激しく、おそらくいつ訪問してもどこかしら修復のための立ち入り禁止区域がある様子</p>
+          <p>訪問時は中央祠堂や見どころのひとつの乳海撹拌のレリーフが修復中だった</p>
+          <p>日の出も名所でもあり観光客も多い</p>
+          <p>レリーフは美しいがボロブドゥールのそれと比べるとやや平面的な印象(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5319_5_lb.jpg"><img src="dscf5319_6.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5327_5_lb.jpg"><img src="dscf5327_6.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5356_5_lb.jpg"><img src="dscf5356_6.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5367_4_lb.jpg"><img src="dscf5367_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5341_4_lb.jpg"><img src="dscf5341_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5335_4_lb.jpg"><img src="dscf5335_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5048_4_lb.jpg"><img src="dscf5048_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5049_4_lb.jpg"><img src="dscf5049_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5055_4_lb.jpg"><img src="dscf5055_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5064_4_lb.jpg"><img src="dscf5064_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5075_4_lb.jpg"><img src="dscf5075_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5077_4_lb.jpg"><img src="dscf5077_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5085_4_lb.jpg"><img src="dscf5085_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5098_4_lb.jpg"><img src="dscf5098_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5119_4_lb.jpg"><img src="dscf5119_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph one" style="grid-template-columns:repeat(1,1fr)">
+            <a class="pht" href="dscf5121_4_lb.jpg"><img src="dscf5121_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>アンコール・トム(バイヨン)<span class="rank s" aria-label="評価 星5">☆☆☆☆☆</span></h3>
+          <p>寺域の広さはアンコール・ワットを上回るが現在はワットほど明確な境界はなく、中央部にそびえるピラミッド型の寺院バイヨンとその周辺に多くの建造物が配されている</p>
+          <p>バイヨンは立体迷宮ともいえる独特の造りで、外観・内部とも他の遺跡とは明らかに異なり壮観</p>
+          <p>「クメールの微笑み」(写真下段右)でかい！(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5131_4_lb.jpg"><img src="dscf5131_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5132_4_lb.jpg"><img src="dscf5132_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5166_4_lb.jpg"><img src="dscf5166_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5140_4_lb.jpg"><img src="dscf5140_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5142_4_lb.jpg"><img src="dscf5142_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5151_3_lb.jpg"><img src="dscf5151_2.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>像のテラス<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>王宮の全面を飾る像の隊列のレリーフが彫り込まれたテラス。やや赤みを帯びた砂岩が美しい(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5172_4_lb.jpg"><img src="dscf5172_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5173_3_lb.jpg"><img src="dscf5173_2.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5171_4_lb.jpg"><img src="dscf5171_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ピミアナカス<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>アンコール・トムの王宮内にあり3段のテラスの上に回廊と塔をもつピラミッドのような建造物(2009)</p>
+          <div class="ph one" style="grid-template-columns:repeat(1,1fr)">
+            <a class="pht" href="dscf5175_1_3_lb.jpg"><img src="dscf5175_1_3_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>プレア・ピチュ<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>アンコール・トムに属する寺院のひとつ。池のほとりの佇まいが美しい(2009)</p>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf5178_4_lb.jpg"><img src="dscf5178_4_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5179_4_lb.jpg"><img src="dscf5179_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>プリア・カーン<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>かつては大きな寺院だったようだが今はパゴダを中心に東西に建造物が並ぶ細長い遺跡</p>
+          <p>門の壁にあるガルーダ(インド神話の神鳥(鷲)、写真上段中)の彫像が印象的(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5476_4_lb.jpg"><img src="dscf5476_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5482_4_lb.jpg"><img src="dscf5482_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5484_4_lb.jpg"><img src="dscf5484_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5493_4_lb.jpg"><img src="dscf5493_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5496_4_lb.jpg"><img src="dscf5496_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5497_4_lb.jpg"><img src="dscf5497_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ニャク・ポアン<span class="rank s" aria-label="評価 星2">☆☆</span></h3>
+          <p>池に浮かぶ浮島様の造りで四方にそれぞれ別の池が連絡する独特の造り(2009)</p>
+          <div class="ph one" style="grid-template-columns:repeat(1,1fr)">
+            <a class="pht" href="dscf5500_4_lb.jpg"><img src="dscf5500_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>タ・ケオ<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>見上げるような急峻な造りの寺院。未完のまま放置されたとは思えないようなシャープで精巧な印象(2009)</p>
+          <div class="ph one" style="grid-template-columns:repeat(1,1fr)">
+            <a class="pht" href="dscf5193_4_lb.jpg"><img src="dscf5193_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>タ・プロム<span class="rank s" aria-label="評価 星4">☆☆☆☆</span></h3>
+          <p>密林に埋もれた寺院の印象そのままのまるで迷路のような遺跡</p>
+          <p>あえて発見されたままの状態で残されており崩れた石積み、木の根がからまり崩壊した壁等、迫力満点</p>
+          <p>夕暮れ時に訪れたため観光客も少なく鬼気迫る感があったほど(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5201_4_lb.jpg"><img src="dscf5201_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5202_4_lb.jpg"><img src="dscf5202_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5210_4_lb.jpg"><img src="dscf5210_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5206_4_lb.jpg"><img src="dscf5206_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5207_4_lb.jpg"><img src="dscf5207_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5212_4_lb.jpg"><img src="dscf5212_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>東メボン<span class="rank s" aria-label="評価 星4">☆☆☆☆</span></h3>
+          <p>肌色に近い黄色い砂岩のブロック造り</p>
+          <p>デヴァター(女神)や守護神たちもブロックの質感のあるレゴ風の意匠</p>
+          <p>スタイルやポーズはエジプトの神々の壁画にも似た二次元的な印象で現代風(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5526_4_lb.jpg"><img src="dscf5526_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5527_4_lb.jpg"><img src="dscf5527_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5529_4_lb.jpg"><img src="dscf5529_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>プレ・ループ<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>急こう配かつ踏み上げの高い階段で急峻な造りの遺跡</p>
+          <p>材質・質感ともすぐ隣の東メボンと似た感じ。3面の阿修羅(？)の彫像あり(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5553_4_lb.jpg"><img src="dscf5553_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5557_1_4_lb.jpg"><img src="dscf5557_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5558_1_4_lb.jpg"><img src="dscf5558_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>バンテアイ・クデイ<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>東西に細長い廊下の続く寺。レリーフの保存状態がよいものが多く、一部には朱の色彩が残ったものも</p>
+          <p>この寺の境内に首を落とされた仏像が多数埋められていたのを上智大学の調査隊が発見した(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5573_4_lb.jpg"><img src="dscf5573_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5582_4_lb.jpg"><img src="dscf5582_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5584_4_lb.jpg"><img src="dscf5584_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5587_1_4_lb.jpg"><img src="dscf5587_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5589_4_lb.jpg"><img src="dscf5589_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5593_1_4_lb.jpg"><img src="dscf5593_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5595_4_lb.jpg"><img src="dscf5595_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5597_1_4_lb.jpg"><img src="dscf5597_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5603_4_lb.jpg"><img src="dscf5603_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>プラサット・クラバン<span class="rank s" aria-label="評価 星4">☆☆☆☆</span></h3>
+          <p>肌色の砂岩で造られた5つの祠堂が直線的に並ぶシンプルだが美しい遺跡</p>
+          <p>中央祠堂と北側祠堂にブロック造りの彫像が残り、芸術性も高い(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5606_4_lb.jpg"><img src="dscf5606_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5611_1_4_lb.jpg"><img src="dscf5611_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5613_1_4_lb.jpg"><img src="dscf5613_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5614_1_4_lb.jpg"><img src="dscf5614_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5616_1_4_lb.jpg"><img src="dscf5616_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5617_1_4_lb.jpg"><img src="dscf5617_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>バンテアイ・サレム<span class="rank s" aria-label="評価 星2">☆☆</span></h3>
+          <p>平面的な配置ではあるが敷地が広くないうえにテラスや塔の高さが高く、立体感のある遺跡(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5530_4_lb.jpg"><img src="dscf5530_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5538_4_lb.jpg"><img src="dscf5538_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5541_4_lb.jpg"><img src="dscf5541_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>バンテアイ・スレイ<span class="rank s" aria-label="評価 星5">☆☆☆☆☆</span></h3>
+          <p>シェムリアップの町から北東に20kmほど離れた遺跡</p>
+          <p>固い赤砂岩で造られていること、発見されるまで土中に埋まっていて保存状態が良かったことからレリーフやまぐさの彫が深く精妙でこの周辺で一番の美しさ</p>
+          <p>時代的にはアンコール・ワットよりも古いものだとは信じられない</p>
+          <p>「東洋のモナリザ」(写真下段右)とよばれるデヴァター(女神)像はロープが張られていて近くでは見られないがそれでも美しく見える(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5383_4_lb.jpg"><img src="dscf5383_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5384_4_lb.jpg"><img src="dscf5384_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5385_4_lb.jpg"><img src="dscf5385_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5390_4_lb.jpg"><img src="dscf5390_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5405_1_4_lb.jpg"><img src="dscf5405_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5408_1_4_lb.jpg"><img src="dscf5408_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>クバル・スピアン<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>バンテアイ・スレイよりさらに10kmほど先にある渓流の遺跡</p>
+          <p>登山道を30分(標示は40分)ほど上ると渓流の中に彫り物がある独特な遺跡</p>
+          <p>規模自体は大きくはなく、石切場との説も(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5431_4_lb.jpg"><img src="dscf5431_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5430_4_lb.jpg"><img src="dscf5430_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5433_4_lb.jpg"><img src="dscf5433_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ベン・メリア<span class="rank s" aria-label="評価 星4">☆☆☆☆</span></h3>
+          <p>シェムリアップの町から直線距離にして東に約40km離れた密林の中の雰囲気抜群の静かな廃墟遺跡</p>
+          <p>状態のよいナーガ(蛇)像、レリーフ等見どころも多く道なき道を石段を乗り越えて進むインディ・ジョーンズ気分が味わえる</p>
+          <p>「天空の城ラピュタ」のモデルとも言われる(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5218_4_lb.jpg"><img src="dscf5218_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5221_4_lb.jpg"><img src="dscf5221_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5226_4_lb.jpg"><img src="dscf5226_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf5227_4_lb.jpg"><img src="dscf5227_4_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5234_4_lb.jpg"><img src="dscf5234_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5255_4_lb.jpg"><img src="dscf5255_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5245_4_lb.jpg"><img src="dscf5245_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5243_4_lb.jpg"><img src="dscf5243_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ロレイ<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>シェムリアップの町から東へ10kmほど離れたロリュオス遺跡群の1つ</p>
+          <p>4つの塔が残るのみの小規模な遺跡ながら赤い塔が美しく印象的(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5440_4_lb.jpg"><img src="dscf5440_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5434_4_lb.jpg"><img src="dscf5434_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5439_4_lb.jpg"><img src="dscf5439_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>プリア・コー<span class="rank s" aria-label="評価 星2">☆☆</span></h3>
+          <p>ロリュオス遺跡群のひとつでロレイ同様、赤い祠が美しい</p>
+          <p>名前の由来となった牛の像は風雨で丸くなってしまっていた(2009)</p>
+          <div class="ph fill2" style="grid-template-columns:repeat(2,1fr)">
+            <a class="pht" href="dscf5442_1_4_lb.jpg"><img src="dscf5442_1_4_lb.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5443_4_lb.jpg"><img src="dscf5443_4_lb.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>バコン<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>ロリュオス遺跡群のひとつで5段の基壇をもつ比較的大きな遺跡</p>
+          <p>黒っぽい砂岩の象が印象的だがいずれも顔の部分が破損している(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5456_1_4_lb.jpg"><img src="dscf5456_1_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5458_4_lb.jpg"><img src="dscf5458_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5467_4_lb.jpg"><img src="dscf5467_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="spot">
+        <h2>シェムリアップ</h2>
+
+        <div class="sub">
+          <h3>街角</h3>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5032_4_lb.jpg"><img src="dscf5032_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5035_4_lb.jpg"><img src="dscf5035_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5036_4_lb.jpg"><img src="dscf5036_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5038_4_lb.jpg"><img src="dscf5038_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5377_4_lb.jpg"><img src="dscf5377_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5660_1_4_lb.jpg"><img src="dscf5660_1_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>オールドマーケット</h3>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5626_4_lb.jpg"><img src="dscf5626_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5634_4_lb.jpg"><img src="dscf5634_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5639_4_lb.jpg"><img src="dscf5639_5.jpg" alt="" loading="lazy"></a>
+          </div>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5643_4_lb.jpg"><img src="dscf5643_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5644_4_lb.jpg"><img src="dscf5644_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5647_4_lb.jpg"><img src="dscf5647_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ナイトマーケット</h3>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5017_4_lb.jpg"><img src="dscf5017_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5018_4_lb.jpg"><img src="dscf5018_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5025_4_lb.jpg"><img src="dscf5025_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>遺跡周辺</h3>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5620_4_lb.jpg"><img src="dscf5620_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5504_4_lb.jpg"><img src="dscf5504_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5509_2_lb.jpg"><img src="dscf5509_4.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>ローカルフード</h3>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5019_4_lb.jpg"><img src="dscf5019_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5168_4_lb.jpg"><img src="dscf5168_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5663_4_lb.jpg"><img src="dscf5663_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+
+        <div class="sub">
+          <h3>トンレサップ湖<span class="rank s" aria-label="評価 星3">☆☆☆</span></h3>
+          <p>シェムリアップの南に位置する大きな湖。雨季と乾季で大きさが6倍ほども違うらしい</p>
+          <p>湖上のボートハウスで生活する人々もおり、学校や商店もある(2009)</p>
+          <div class="ph" style="grid-template-columns:repeat(3,1fr)">
+            <a class="pht" href="dscf5260_4_lb.jpg"><img src="dscf5260_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5262_4_lb.jpg"><img src="dscf5262_5.jpg" alt="" loading="lazy"></a>
+            <a class="pht" href="dscf5304_4_lb.jpg"><img src="dscf5304_5.jpg" alt="" loading="lazy"></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Copyright (C) 2012-2026 the Quinary. All Rights Reserved.</p>
+  </footer>
+
+  <!-- 引き出しメニュー:ボタンを押すと横から出てきます -->
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="サイト全体メニュー">
+    <div class="dh">
+      <b>QUINARY</b>
+      <button class="dclose" id="drawerClose" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <ul class="tree">
+      <li><div class="row"><a class="lnk" href="index.html">トップ</a></div></li>
+      <li class="br open">
+        <div class="row"><span class="cdot" style="background:#27427A"></span><a class="lnk" href="world_top.html">世界へ</a><button class="tw" type="button" aria-expanded="true" aria-label="世界へを開閉"></button></div>
+        <ul>
+          <li class="br open">
+            <div class="row"><a class="lnk" href="asia_top.html">アジア</a><button class="tw" type="button" aria-expanded="true" aria-label="アジアを開閉"></button></div>
+            <ul>
+              <li><div class="row"><a class="lnk" href="china.html">中国</a></div></li>
+              <li><div class="row"><a class="lnk" href="korea.html">韓国</a></div></li>
+              <li><div class="row"><a class="lnk" href="taiwan.html">台湾</a></div></li>
+              <li><div class="row"><a class="lnk" href="philippines.html">フィリピン</a></div></li>
+              <li><div class="row"><a class="lnk" href="indonesia.html">インドネシア</a></div></li>
+              <li><div class="row"><a class="lnk" href="singapore.html">シンガポール</a></div></li>
+              <li><div class="row"><a class="lnk" href="malaysia.html">マレーシア</a></div></li>
+              <li><div class="row"><a class="lnk" href="thai.html">タイ</a></div></li>
+              <li><div class="row"><a class="lnk cur" aria-current="page" href="cambodia.html">カンボジア</a></div></li>
+              <li><div class="row"><a class="lnk" href="vietnum.html">ベトナム</a></div></li>
+              <li><div class="row"><a class="lnk" href="lao.html">ラオス</a></div></li>
+              <li><div class="row"><a class="lnk" href="myanmar.html">ミャンマー</a></div></li>
+              <li><div class="row"><a class="lnk" href="nepal.html">ネパール</a></div></li>
+              <li><div class="row"><a class="lnk" href="india.html">インド</a></div></li>
+              <li><div class="row"><a class="lnk" href="srilanka.html">スリランカ</a></div></li>
+              <li><div class="row"><a class="lnk" href="maldives.html">モルディブ</a></div></li>
+              <li><div class="row"><a class="lnk" href="kyrgys.html">キルギス、カザフスタン</a></div></li>
+              <li><div class="row"><a class="lnk" href="uzbekistan.html">ウズベキスタン</a></div></li>
+            </ul>
+          </li>
+          <li><div class="row"><a class="lnk" href="mideast_top.html">中東</a></div></li>
+          <li><div class="row"><a class="lnk" href="europe_top.html">ヨーロッパ</a></div></li>
+          <li><div class="row"><a class="lnk" href="africa_top.html">アフリカ</a></div></li>
+          <li><div class="row"><a class="lnk" href="nothamerica_top.html">北米</a></div></li>
+          <li><div class="row"><a class="lnk" href="centralamerica_top.html">中米</a></div></li>
+          <li><div class="row"><a class="lnk" href="southamerica_top.html">南米</a></div></li>
+          <li><div class="row"><a class="lnk" href="oceania_top.html">オセアニア</a></div></li>
+        </ul>
+      </li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#2E6E6A"></span><a class="lnk" href="onsen_top.html">温泉</a><button class="tw" type="button" aria-expanded="false" aria-label="温泉を開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="onsen_hokkaido.html">北海道</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_tohoku.html">東北</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_kanto.html">関東</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_chubu.html">中部</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_chugokushikoku.html">中国、四国</a></div></li>
+          <li><div class="row"><a class="lnk" href="onsen_kyusyu.html">九州</a></div></li>
+        </ul>
+      </li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#C0637C"></span><a class="lnk" href="sakura_top.html">さくら</a><button class="tw" type="button" aria-expanded="false" aria-label="さくらを開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="sakura_tohoku.html">東北</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_miharu.html">三春</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_kanto.html">関東</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_chubu.html">中部</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_kansai.html">関西</a></div></li>
+          <li><div class="row"><a class="lnk" href="sakura_chugokushikoku.html">中国、四国、九州</a></div></li>
+        </ul>
+      </li>
+      <li><div class="row"><span class="cdot" style="background:#4C6444"></span><a class="lnk" href="88_top.html">お遍路</a></div></li>
+      <li class="br">
+        <div class="row"><span class="cdot" style="background:#B5493C"></span><a class="lnk" href="landscape_top.html">風景、祭り</a><button class="tw" type="button" aria-expanded="false" aria-label="風景、祭りを開閉"></button></div>
+        <ul>
+          <li><div class="row"><a class="lnk" href="landscape_furano.html">富良野、美瑛</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_oirase.html">奥入瀬</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_nebuta.html">ねぶた、ねぷた、竿灯</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_oze.html">尾瀬</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_owara.html">おわら風の盆</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_yosakoi.html">よさこい祭り、阿波おどり、郡上おどり</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_yakushima.html">屋久島、種子島</a></div></li>
+          <li><div class="row"><a class="lnk" href="landscape_diving.html">南西諸島</a></div></li>
+        </ul>
+      </li>
+      <li><div class="row"><a class="lnk" href="blog.html">ブログ</a></div></li>
+    </ul>
+  </aside>
+
+  <div class="lb" id="lb" role="dialog" aria-label="写真の拡大表示">
+    <img id="lbimg" alt="">
   </div>
-</section>
 
-<!-- 導入:温度は静。本人の文をそのまま活かす -->
-<section class="intro reveal">
-  <p>2013年11月にイスラエルとヨルダンを旅しました。<br>と言ってもイスラエルの記事はエルサレム、ベツレヘムのみです。</p>
-  <p class="note">旅の日々の記録は <a href="#">ブログ</a> にも綴っています</p>
-</section>
+  <button id="toTop" class="totop" type="button" aria-label="ページの上へ戻る">↑</button>
 
-<!-- 地図:既存の /map/israel.html をこの枠に埋め込む -->
-<section class="map-block reveal">
-  <div id="map" role="application" aria-label="訪れた場所の地図"></div>
-  <p class="caption">訪れた場所 — エルサレム / ベツレヘム</p>
-</section>
+  <script>
+    (function () {
+      /* 地図(枠の中)で場所が選ばれたら、地図の下の『◯◯へ』リンクを差し替える */
+      window.addEventListener('message', function (ev) {
+        var d = ev && ev.data;
+        if (!d || !d.quinaryMapSpot) return;
+        var a = document.getElementById('spotLink');
+        if (!a) return;
+        var nm = String(d.name || '');
+        var sh = nm.length > 4 ? nm.slice(0, 4) + '…' : nm;   /* 名前は4文字まで */
+        a.textContent = sh + 'へ';
+        a.href = d.url || '#';
+        a.hidden = !nm;
+      });
+      var body = document.body;
+      var btn = document.getElementById('menuBtn');
+      var closeBtn = document.getElementById('drawerClose');
+      var scrim = document.getElementById('scrim');
 
-<!-- 旅の道線:ここから温度が上がる(動の3割) -->
-<main class="journey">
+      function openNav() {
+        body.classList.add('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+      function closeNav() {
+        body.classList.remove('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
 
-  <!-- ══════ エルサレム ══════ -->
-  <section class="city reveal">
-    <h2><span class="city-en">JERUSALEM</span>エルサレム</h2>
-    <p class="city-lede">1km四方に満たない旧市街にユダヤ教、キリスト教、イスラム教の聖地がある世界的な宗教都市。1967年の第三次中東戦争時にイスラエルが東エルサレムを占領して以来、現在も実質的にイスラエルがエルサレム全域を支配下に置いているが、国家間の領土問題にもまして宗教的にもその帰属をめぐって問題が尽きない。</p>
-  </section>
+      if (btn) btn.addEventListener('click', function () {
+        body.classList.contains('nav-open') ? closeNav() : openNav();
+      });
+      if (closeBtn) closeBtn.addEventListener('click', closeNav);
+      if (scrim) scrim.addEventListener('click', closeNav);
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>聖墳墓教会</h3><span class="rating" aria-label="評価 星3つ">☆☆☆</span>
-    </div>
-    <p>イエス・キリストの墓とされる場所に立つ教会。イエスが磔刑に処されたゴルゴダの丘もこことされる。教会内には十字架が立てられた場所、イエスが息を引き取った場所、十字架から降ろされたイエスを聖母マリアが受け止めた場所、横たえられ香油を塗った石版、イエスの墓等があり、世界中から信者が訪れる。</p>
-    <p>但し、イエスの死後、戦争による破壊と復興を繰り返すうちにゴルゴダの丘の位置はわからなくなってしまい、後にヴィーナス神殿で聖遺物が発見されたことからここをゴルゴダの丘として神殿を取り壊し現在の聖墳墓教会が建てられた。教会はエルサレム旧市街のアラブ式の住居が密集する中に壁を接して建っており、豪華でも壮麗でもないことが意外だった。</p>
-    <div class="photos">
-      <div class="ph land" data-label="聖墳墓教会 外観"></div>
-      <div class="ph port" data-label="ゴルゴダの丘"></div>
-      <div class="ph port" data-label="教会内部"></div>
-      <div class="ph land" data-label="香油の石版"></div>
-      <div class="ph port" data-label="イエスの墓"></div>
-      <div class="ph land" data-label="祈る巡礼者"></div>
-    </div>
-  </article>
+      // メニューの枝の開閉(高さをなめらかに変える)
+      function childUl(li) {
+        for (var i = 0; i < li.children.length; i++) {
+          if (li.children[i].tagName.toLowerCase() === 'ul') return li.children[i];
+        }
+        return null;
+      }
+      document.querySelectorAll('.tree .tw').forEach(function (t) {
+        t.addEventListener('click', function () {
+          var li = t.closest('li');
+          var ul = childUl(li);
+          var wasOpen = li.classList.contains('open');
+          t.setAttribute('aria-expanded', wasOpen ? 'false' : 'true');
+          var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!ul || reduce) { li.classList.toggle('open'); return; }
+          var done = false;
+          function finish() {
+            if (done) return;
+            done = true;
+            ul.classList.remove('anim');
+            ul.style.height = '';
+            if (wasOpen) li.classList.remove('open');
+          }
+          ul.addEventListener('transitionend', finish, { once: true });
+          setTimeout(finish, 400);
+          if (wasOpen) {
+            ul.style.height = ul.scrollHeight + 'px';
+            ul.classList.add('anim');
+            requestAnimationFrame(function () { ul.style.height = '0px'; });
+          } else {
+            li.classList.add('open');
+            ul.style.height = '0px';
+            ul.classList.add('anim');
+            requestAnimationFrame(function () { ul.style.height = ul.scrollHeight + 'px'; });
+          }
+        });
+      });
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>ヴィア・ドロローサ</h3><span class="rating" aria-label="評価 星2つ">☆☆</span>
-    </div>
-    <p>イエス・キリストが十字架を背負って歩いたとされる「悲しみの道」または「苦難の道」。磔刑を宣告されたピラト総督の官邸からゴルゴダの丘に至るおよそ1kmの道のりの間に聖書や伝承に基づいた14カ所の留(station)が設置されている。</p>
-    <p>それぞれいわれがあって留とされており巡礼者はイエスの苦難を思いながらこの道を歩くが、留自体は特段目を引くものではなくあくまでも巡礼の道。</p>
-    <div class="photos">
-      <div class="ph port" data-label="悲しみの道"></div>
-      <div class="ph port" data-label="第◯留"></div>
-      <div class="ph land" data-label="旧市街の路地"></div>
-    </div>
-  </article>
+      // 写真の拡大表示
+      var lb = document.getElementById('lb');
+      var lbimg = document.getElementById('lbimg');
+      document.querySelectorAll('.pht').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var href = a.getAttribute('href') || '';
+          if (!/\.(jpe?g|png|gif|webp)$/i.test(href)) return; // 動画などはそのまま開く
+          e.preventDefault();
+          lbimg.src = a.getAttribute('href');
+          lb.classList.add('show');
+        });
+      });
+      if (lb) lb.addEventListener('click', function () {
+        lb.classList.remove('show');
+        lbimg.src = '';
+      });
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>昇天教会</h3><span class="rating" aria-label="評価 星1つ">☆</span>
-    </div>
-    <p>処刑後に復活したイエスがその40日後、弟子たちの前で昇天したとされるオリーブ山に建てられた教会。現在はイスラム教のモスクになっているが昇天教会のドーム自体は使われていないようでガランとしていた。</p>
-    <div class="photos">
-      <div class="ph port" data-label="昇天教会のドーム"></div>
-    </div>
-  </article>
+      // スクロール連動: SINCEの非表示と、上に戻る釦
+      var reduceAll = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var toTop = document.getElementById('toTop');
+      function onScroll() {
+        var y = window.pageYOffset || 0;
+        document.body.classList.toggle('scrolled', y > 8);
+        if (toTop) toTop.classList.toggle('show', y > 600);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      if (toTop) toTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceAll ? 'auto' : 'smooth' });
+      });
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>岩のドーム</h3><span class="rating" aria-label="評価 星3つ">☆☆☆</span>
-    </div>
-    <p>「神殿の丘」にある「聖なる岩」を覆ったドーム。イスラム建築ではあるがモスク(礼拝所)ではない。この岩は旧約聖書に登場するユダヤ教の聖地であり、かつてはその上にユダヤ教の「エルサレム神殿」が建てられていた。</p>
-    <p>神殿はローマ帝国時代に破壊されたが、その後イスラム教において預言者ムハンマドが大天使に伴われて昇天した場所とされ、イスラム王朝であるウマイヤ朝時代の7世紀にドームが建設された。現在も「神殿の丘」はイスラム教の管理下にあり入域には厳しい荷物検査があるうえ、「岩のドーム」内部にはイスラム教徒以外は入ることができない。</p>
-    <div class="photos">
-      <div class="ph land" data-label="岩のドーム"></div>
-      <div class="ph land" data-label="神殿の丘"></div>
-      <div class="ph land" data-label="黄金のドーム"></div>
-    </div>
-  </article>
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          lb.classList.remove('show');
+          lbimg.src = '';
+          closeNav();
+        }
+      });
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>嘆きの壁</h3><span class="rating" aria-label="評価 星3つ">☆☆☆</span>
-    </div>
-    <p>「神殿の丘」は現在イスラム教管理下にあるが唯一基壇南西部の壁の一部分だけはユダヤ教の管理下にあり、聖地とされる。「聖なる岩」を祀った「エルサレム神殿」が破壊され聖地に立ち入ることさえできないユダヤ教徒がこの壁に向かって嘆き悲しむことから「嘆きの壁」と呼ばれる。</p>
-    <div class="photos">
-      <div class="ph land" data-label="嘆きの壁"></div>
-      <div class="ph port" data-label="祈りの姿"></div>
-      <div class="ph land" data-label="壁の前の広場"></div>
-    </div>
-  </article>
+      // ゆっくり現れる表示(対応しない環境ではすぐ全部表示)
+      var spots = document.querySelectorAll('.spot');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!('IntersectionObserver' in window) || reduce) {
+        spots.forEach(function (sp) { sp.classList.add('vis'); });
+      } else {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px' });
+        spots.forEach(function (sp) { io.observe(sp); });
+      }
+    })();
+  </script>
 
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>イスラエル博物館</h3><span class="rating" aria-label="評価 星3つ">☆☆☆</span>
-    </div>
-    <p>考古学や現代美術等のセクションに分かれた大規模な博物館。考古学関連の展示が充実しており死海文書に関しては専用のパビリオンがある。</p>
-  </article>
-
-  <!-- ══════ ベツレヘム ══════ -->
-  <section class="city reveal">
-    <h2><span class="city-en">BETHLEHEM</span>ベツレヘム</h2>
-    <p class="city-lede">エルサレムの南方約9km、パレスチナのヨルダン川西岸地区に位置する小都市。イエス・キリストの生誕地とされる。1967年の第三次中東戦争でイスラエルに占領され、1995年以降はパレスチナ自治政府が統治している。町の北側にはイスラエルとパレスチナを隔てる分離壁が延々と続き、パレスチナ側からイスラエル側へ移動する際には検問がある。</p>
-  </section>
-
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>生誕教会</h3><span class="rating" aria-label="評価 星2つ">☆☆</span>
-    </div>
-    <p>イエス・キリストが生まれたとされる洞穴の上に建てられた教会。洞穴は地下にあり大勢の信者が列をなして参拝しているが教会も洞穴自体も薄暗く華々しいものではない。</p>
-    <div class="photos">
-      <div class="ph land" data-label="生誕教会"></div>
-      <div class="ph land" data-label="教会内部"></div>
-      <div class="ph land" data-label="生誕の洞穴"></div>
-    </div>
-  </article>
-
-  <article class="spot reveal">
-    <div class="spot-head">
-      <h3>分離壁とバンクシーの壁画</h3><span class="rating" aria-label="評価 星2つ">☆☆</span>
-    </div>
-    <p>分離壁には政治的なメッセージが込められた落書きやストリートアートが描かれているが、社会風刺的な絵で有名なバンクシーが分離壁をはじめ街中の壁面に数点の絵を残している。</p>
-    <p>実際に描かれたのは6点と言われるが、オリジナルは既に失われ残っているものはコピーであるとされるものや偽物とされるものもある等、はっきりしたことは不明。</p>
-    <div class="photos">
-      <div class="ph land" data-label="分離壁"></div>
-      <div class="ph land" data-label="壁画 1"></div>
-      <div class="ph land" data-label="壁画 2"></div>
-      <div class="ph port" data-label="壁画 3"></div>
-      <div class="ph land" data-label="街の壁面"></div>
-      <div class="ph land" data-label="検問付近"></div>
-    </div>
-  </article>
-
-</main>
-
-<!-- 回遊:中東の旅は続く -->
-<nav class="next-trip reveal" aria-label="前後の国へ">
-  <a href="#" class="prev"><span class="dir">← 前のページ</span><span class="name">トルコ</span></a>
-  <a href="#" class="next"><span class="dir">次のページ →</span><span class="name">ヨルダン</span></a>
-</nav>
-
-<footer class="site">Copyright © 2012-2026 the Quinary. All Rights Reserved.</footer>
-
-<!-- デモ用:静/動テーマ切替。実運用ではカテゴリのタグで自動判定 -->
-<div class="theme-demo" role="group" aria-label="カテゴリ別テーマ切替デモ">
-  <span class="lbl">タグ</span>
-  <button type="button" data-set="dou" aria-pressed="true">世界</button>
-  <button type="button" data-set="henro" aria-pressed="false">遍路</button>
-  <button type="button" data-set="onsen" aria-pressed="false">温泉</button>
-  <button type="button" data-set="sakura" aria-pressed="false">さくら</button>
-  <button type="button" data-set="matsuri" aria-pressed="false">祭り</button>
-</div>
-
-<script>
-/* スクロール出現:動モードでは立ち上がり、静モードではほぼ静止(変数が制御) */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }});
-},{ threshold:.12 });
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* 訪問地マップ:Google Maps API(iframe方式)の置き換え。APIキー不要のLeaflet+OSM */
-window.addEventListener('load', ()=>{
-  if(typeof L === 'undefined') return;   /* オフライン時は枠のみ表示 */
-  const map = L.map('map', { scrollWheelZoom:false }).setView([31.742, 35.22], 11);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution:'&copy; OpenStreetMap contributors &copy; CARTO',
-    maxZoom:18
-  }).addTo(map);
-  const pin = L.divIcon({ className:'map-pin', iconSize:[13,13] });
-  const spots = [
-    { name:'エルサレム',   pos:[31.7767, 35.2345] },
-    { name:'ベツレヘム',   pos:[31.7054, 35.2024] },
-  ];
-  spots.forEach(s=> L.marker(s.pos, { icon:pin }).addTo(map).bindPopup(s.name));
-});
-
-/* テーマ切替デモ:body の data-theme を差し替えるだけ = テーマ変数設計の実証 */
-document.querySelectorAll('.theme-demo button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.body.dataset.theme = btn.dataset.set;
-    document.querySelectorAll('.theme-demo button').forEach(b=>b.setAttribute('aria-pressed', String(b===btn)));
-  });
-});
-</script>
 </body>
+
 </html>
